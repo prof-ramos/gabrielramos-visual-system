@@ -1,0 +1,25 @@
+---
+import { SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+---
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="on-navy">
+  <nav class="container" aria-label="Navegação principal">
+    <a class="brand" href="/" aria-label={`${SITE_TITLE}, início`}>{SITE_TITLE}<span aria-hidden="true">.</span></a>
+    <div class="nav-links">
+      <HeaderLink href="/">Início</HeaderLink>
+      <HeaderLink href="/blog/">Blog</HeaderLink>
+      <HeaderLink href="/about/">Sobre</HeaderLink>
+    </div>
+  </nav>
+</header>
+<style>
+  header { background: var(--navy); color: var(--ivory); }
+  nav { min-height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .brand { font: 600 clamp(1.5rem, 2.4vw, 2rem)/1 var(--display); letter-spacing: -.05em; text-decoration: none; white-space: nowrap; }
+  .brand span { color: var(--pink); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .skip-link { position: absolute; top: -100px; left: 1.5rem; z-index: 10; padding: .8rem 1.2rem; background: var(--pink); color: var(--navy); }
+  .skip-link:focus { top: 1rem; }
+  @media (max-width: 680px) { nav { min-height: 110px; padding-block: 1.1rem; align-items: flex-start; justify-content: center; flex-direction: column; gap: .75rem; } .nav-links { gap: 1.75rem; } }
+</style>

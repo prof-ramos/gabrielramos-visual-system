@@ -1,0 +1,13 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EditorialEngraving from '../components/EditorialEngraving.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head><BaseHead title={`Sobre | ${SITE_TITLE}`} description={SITE_DESCRIPTION} /></head>
+  <body><Header /><main tabindex="-1" id="conteudo" class="container about"><div class="page-intro"><h1>Uma boa pergunta<br />abre caminhos.</h1><div class="prose"><p>Este é o SherlockRamos: um espaço para Direito, tecnologia, humor e curiosidade dividirem a mesma página.</p><p>Por aqui, uma ideia pode começar séria e terminar com uma sobrancelha levantada. O convite é olhar de novo.</p><p><a href="/blog/">Leia as publicações</a> ou <a href="/rss.xml">acompanhe por RSS</a>.</p></div></div><div class="about-art"><EditorialEngraving /></div></main><Footer /></body>
+</html>
+<style>.about { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: center; }.about-art { max-width: 470px; } @media(max-width: 800px) { .about { grid-template-columns: 1fr; gap: 0; }.about-art { justify-self: center; } }</style>

@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+type Props = CollectionEntry<'blog'>['data'];
+const { title, description, pubDate, updatedDate, heroImage, example } = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head><BaseHead title={title} description={description} image={heroImage} /></head>
+  <body><Header /><main tabindex="-1" id="conteudo" class="container"><article class="article">
+    <header class="article-heading"><a class="back-link" href="/blog/">Todas as publicações</a><p class="meta"><FormattedDate date={pubDate} />{example && <span class="example">Publicação de exemplo</span>}</p><h1>{title}</h1><p class="standfirst">{description}</p>{updatedDate && <p class="meta">Atualizado em <FormattedDate date={updatedDate} /></p>}</header>
+    {heroImage && <Image class="hero-image" width={1160} src={heroImage} alt="" />}
+    <div class="prose reading"><slot /></div>
+    <div class="article-end reading"><a href="/blog/">Voltar às publicações</a><a href="/rss.xml">Acompanhar por RSS</a></div>
+  </article></main><Footer /></body>
+</html>
+<style>
+  .article { padding-top: 3rem; }
+  .article-heading { max-width: 850px; padding-block: 1rem 2rem; }
+  .back-link { display: inline-block; font-size: 1rem; margin-bottom: 2rem; }
+  .meta { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-bottom: 1rem; }
+  h1 { font-size: clamp(2.5rem, 5vw, 4.3rem); max-width: 22ch; }
+  .standfirst { font-size: 1.4rem; max-width: 50ch; }
+  .hero-image { margin-bottom: 3rem; border-radius: 4px; width: 100%; }
+  .article-end { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--border); margin-top: 3rem; padding-top: 1.5rem; font-size: 1rem; }
+  @media(max-width: 680px) { .article { padding-top: 1.5rem; }.article-heading { padding-bottom: 1.5rem; }.standfirst { font-size: 1.25rem; } }
+</style>

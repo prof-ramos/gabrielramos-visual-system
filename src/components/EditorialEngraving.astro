@@ -1,0 +1,39 @@
+---
+// An impossible observatory: a celestial globe suspended over engraved book leaves.
+// Decorative geometry only; deliberately not a mascot or a definitive brand mark.
+const latitudes = Array.from({ length: 21 }, (_, i) => ({ y: 172 + (i - 10) * 9, rx: Math.sqrt(1 - ((i - 10) / 11) ** 2) * 105 }));
+const meridians = Array.from({ length: 17 }, (_, i) => 9 + i * 6);
+const dots = Array.from({ length: 95 }, (_, i) => ({ x: 254 + Math.cos(i * 2.39996) * Math.sqrt(i / 95) * 100, y: 171 + Math.sin(i * 2.39996) * Math.sqrt(i / 95) * 100, r: i % 4 === 0 ? 1 : .55 }));
+---
+<svg viewBox="0 0 520 430" fill="none" aria-hidden="true" focusable="false" class="engraving">
+  <defs>
+    <clipPath id="globe-clip"><circle cx="254" cy="172" r="105" /></clipPath>
+    <pattern id="page-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)"><path d="M0 0V7" stroke="currentColor" stroke-width=".6" /></pattern>
+  </defs>
+  <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M75 315Q163 285 253 325Q333 282 438 300L445 354Q339 346 254 381Q165 350 69 369Z" fill="var(--ivory)" stroke-width="1.7" />
+    <path d="M83 306Q169 282 253 325Q338 274 430 291L438 337Q336 330 254 370Q168 333 78 352Z" fill="url(#page-hatch)" stroke-width="1.2" />
+    <path d="M88 291Q170 267 253 311Q333 261 421 279L430 322Q337 314 254 356Q171 318 84 335Z" fill="var(--ivory)" stroke-width="1.7" />
+    {Array.from({length: 12}, (_, i) => <path d={`M${96-i*.5} ${298+i*2.5}Q169 ${276+i*2.7} 246 ${316+i*2.7}M261 ${316+i*2.7}Q337 ${270+i*2.8} ${415+i*.5} ${287+i*2.7}`} stroke-width=".65" opacity={.45+i*.035} />)}
+    <path d="M253 311L254 356M254 370V381" stroke-width="1.6" />
+    <path d="M115 389Q248 416 409 378M145 401Q250 420 367 396" opacity=".3" stroke-width=".6" />
+    <circle cx="254" cy="172" r="110" stroke-width=".65" />
+    <circle cx="254" cy="172" r="105" fill="var(--ivory)" stroke-width="1.6" />
+    <g clip-path="url(#globe-clip)">
+      {latitudes.map(l => <ellipse cx="254" cy={l.y} rx={l.rx} ry={8 + (l.y-82)/10} stroke-width=".7" />)}
+      {meridians.map(rx => <ellipse cx="254" cy="172" rx={rx} ry="105" transform="rotate(-23 254 172)" stroke-width=".65" />)}
+      {dots.map(dot => <circle cx={dot.x} cy={dot.y} r={dot.r} fill="currentColor" stroke="none" />)}
+      <path d="M148 180Q185 232 234 259Q279 283 335 246L363 289H137Z" fill="currentColor" opacity=".12" stroke="none" />
+    </g>
+    <ellipse cx="254" cy="172" rx="177" ry="44" transform="rotate(-26 254 172)" stroke="var(--gold)" stroke-width="1.4" />
+    <ellipse cx="254" cy="172" rx="183" ry="48" transform="rotate(-26 254 172)" stroke="var(--gold)" stroke-width=".55" />
+    <path d="M94 235Q178 279 355 174" stroke="var(--ivory)" stroke-width="5" />
+    <path d="M94 235Q178 279 355 174" stroke="var(--gold)" stroke-width="1.3" />
+    <circle cx="397" cy="91" r="23" fill="var(--pink)" stroke="none" />
+    {Array.from({length: 7}, (_,i) => <path d={`M${381+i*1.7} ${106-i*4}l${9+i*1.9} -${2+i*.9}`} opacity=".55" stroke-width=".65" />)}
+    <path d="M115 99h14m-7-7v14M407 242h10m-5-5v10M305 35h8m-4-4v8" stroke-width="1" />
+    <circle cx="164" cy="47" r="1.7" fill="currentColor" stroke="none" /><circle cx="441" cy="171" r="1.1" fill="currentColor" stroke="none" /><circle cx="76" cy="178" r="1.1" fill="currentColor" stroke="none" />
+    <path d="M248 287v8m10-7v11m-21-6v5" stroke-width=".65" opacity=".5" />
+  </g>
+</svg>
+<style>.engraving { color: var(--navy); width: 100%; height: auto; }</style>
