@@ -92,7 +92,7 @@ O vocabulário compartilhado é gravura com linhas finas, hachuras e pontilhado;
 
 ### Fichas e composição
 
-Cada ficha registra nome, função narrativa, silhueta, rosto, cabelo, roupas, expressões, poses e referência principal. Deve separar invariantes de variações permitidas; campos sem evidência ficam **pendentes**, não preenchidos por inferência. Consulte a [ficha da Dama](characters/dama.md) antes de qualquer variação dela.
+Cada ficha registra nome, função narrativa, silhueta, rosto, cabelo, roupas, expressões, poses e referência principal. Deve separar invariantes de variações permitidas; campos sem evidência ficam **pendentes**, não preenchidos por inferência. Consulte a [ficha da Dama](characters/dama.md) antes de qualquer variação dela. A [apresentação do Investigador de Ideias](characters/investigador-ideias-proposta.md) é uma proposta em teste; sua ficha de três vistas depende da aprovação do usuário.
 
 - **Banners:** reservar área limpa quando houver composição editorial, mantendo o personagem legível.
 - **Avatares:** priorizar silhueta e reconhecimento no tamanho final.
