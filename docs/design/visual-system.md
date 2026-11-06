@@ -75,3 +75,40 @@ Referências estéticas ou links comerciais não são autorização nem licença
 ## Guia de artes e personagens
 
 A aplicação ilustrativa está detalhada no [guia de artes](image-guide.md). A [ficha da Dama](characters/dama.md) deriva da [referência original aprovada e preservada](references/dama-reference.png), inspecionada nesta etapa; ela não se confunde com o Droppy. Os [prompts](image-prompts.md) são propostas de especificação para revisão, sem novas imagens aprovadas. Fontes, limites e a diferença entre anúncio e capacidade efetivamente verificada estão em [sources-images.md](sources-images.md).
+
+## Referência-mestra de ilustração e personagens
+
+**Status desta seção: proposta pendente de validação de Gabriel Ramos.** A [imagem da Dama](references/dama-reference.png) permanece a referência de trabalho anteriormente aprovada; essa aprovação não confirma automaticamente toda a sistematização abaixo.
+
+### Finalidade e linguagem compartilhada
+
+Esta referência-mestra é a orientação canônica para ilustrações e personagens do Gabriel Ramos Visual System. Complementa **Contemporary Editorial Engraving** e os tokens existentes, sem substituí-los ou criar uma identidade concorrente.
+
+O vocabulário compartilhado é gravura com linhas finas, hachuras e pontilhado; volume escultórico descrito pelo desenho; marinho e marfim como relação principal; dourado de apoio e rosa em acentos pontuais. A escolha da referência não obriga toda peça a ter fundo escuro. A exceção do **Droppy**, em *Monochromatic Dithered Engraving*, continua monocromática e não deve receber acentos rosa ou dourados automaticamente.
+
+**Estilo não é personagem:** técnica e paleta podem ser compartilhadas; venda, balança e xícara pertencem à especificação desta Dama e não devem ser transferidas por padrão a outros personagens. Cada personagem precisa de sua própria referência e ficha.
+
+### Fichas e composição
+
+Cada ficha registra nome, função narrativa, silhueta, rosto, cabelo, roupas, expressões, poses e referência principal. Deve separar invariantes de variações permitidas; campos sem evidência ficam **pendentes**, não preenchidos por inferência. Consulte a [ficha da Dama](characters/dama.md) antes de qualquer variação dela.
+
+- **Banners:** reservar área limpa quando houver composição editorial, mantendo o personagem legível.
+- **Avatares:** priorizar silhueta e reconhecimento no tamanho final.
+- **Capas:** usar objetos pertinentes ao tema, sem acrescentar símbolos para preencher espaço.
+- **Fichas de personagem:** manter vistas e elementos separados, sem sobreposição que impeça comparação.
+
+Textura pertence às ilustrações e à decoração. Texto, campos, botões e demais superfícies de interface continuam limpos. Não adotar fotografia, acabamento de render 3D/plástico, neon, textura que prejudique a leitura, alterações dos atributos fixos ou novos tokens sem aprovação. Volume escultórico em uma gravura não significa acabamento plástico ou renderização 3D.
+
+### Revisão, agentes e procedência
+
+Revisar técnica, paleta, atributos fixos, pertinência ao tema, tamanho de uso e leitura. Agentes devem consultar esta seção, o [guia operacional](image-guide.md), a ficha específica e a imagem efetiva; quando houver geração autorizada, anexar a referência real à ferramenta. Descrição textual ou caminho de arquivo não substituem os pixels. Isso orienta a consistência, sem garantir igualdade entre gerações. Consulte os [resultados observados nos testes](prompt-tests.md).
+
+| Campo | Registro |
+| --- | --- |
+| Responsável pela validação do sistema | Gabriel Ramos |
+| Referência de trabalho da Dama | [PNG original preservado](references/dama-reference.png) |
+| Procedência documentada | Arquivo fornecido pelo usuário; detalhes e SHA no [registro](references/README.md) |
+| Autoria, origem de criação, data de criação e direitos de uso | Pendentes de confirmação; não inferir da aprovação estética |
+| Aprovação desta seção-mestra | Pendente |
+
+Referências externas não inspecionadas não substituem o PNG existente. Novas propostas e saídas devem manter procedência própria, preservando os originais e distinguindo aprovação da referência, revisão do protocolo e aprovação final do usuário.

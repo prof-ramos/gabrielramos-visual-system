@@ -12,15 +12,9 @@ A [imagem original da Dama](references/dama-reference.png), fornecida pelo usuá
 
 Essa aprovação se refere à referência visual. Os [prompts de especificação](image-prompts.md) deste repositório são propostas para revisão; não são prompts ou novas imagens aprovadas. A imagem documental não é carregada pelo site e não deve ser movida para `public/` ou importada em páginas por conveniência.
 
-## Linguagem visual
+## Aplicação da direção
 
-- **Volume escultórico:** figura clássica com massas claras e sombras construídas por linhas. Preservar o desenho do rosto e o encadeamento das dobras do tecido da referência, em vez de redesenhá-los a cada arte.
-- **Hachuras e pontilhado:** linhas finas acompanham anatomia, tecido e objetos; hachuras cruzadas e pontos aprofundam as sombras. A textura deve explicar volume, não cobrir o desenho com ruído uniforme.
-- **Marfim sobre marinho:** figura e detalhes claros se destacam de um ambiente profundo. Biblioteca e livros podem recuar pelo contraste, mantendo a figura legível. Isso é uma aplicação ilustrativa; a superfície de leitura do site continua marfim.
-- **Acentos pontuais:** rosa na xícara e dourado nos pães de queijo na cena aprovada. Os acentos estabelecem a graça da composição sem tingir toda a figura ou o cenário.
-- **Solenidade e humor cotidiano:** a figura da Justiça mantém presença clássica; café, vapor e pães de queijo introduzem uma quebra bem-humorada. Evitar transformar esse contraste em caricatura facial ou mascote infantil.
-
-Halftone, dithering e engraving/etching podem conviver quando servem ao desenho. A Dama tem volume escultórico e hachuras como referência concreta. **Não confundir com o Droppy:** a indicação *Monochromatic Dithered Engraving* descreve a linguagem específica dele; não substitui a ficha da Dama ou a paleta mãe.
+As regras compartilhadas ficam na [referência-mestra do sistema visual](visual-system.md#referência-mestra-de-ilustração-e-personagens), sem um segundo conjunto de normas neste guia. O contraste entre a solenidade da Justiça e o café com pães de queijo é a cena específica da Dama, detalhada em sua [ficha](characters/dama.md). A linguagem monocromática do Droppy não substitui essa ficha.
 
 ## Tokens compartilhados
 

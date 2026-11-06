@@ -39,3 +39,12 @@ Mudar pose ou cena não torna o resultado automaticamente aprovado. A imagem ori
 ## Conferência de uma futura saída
 
 Comparar lado a lado com a referência: rosto, venda, cabelos, folhagens, fecho, construção do tecido, aparência escultórica e paleta. Depois conferir a mudança solicitada, anatomia, mãos, pés e integridade da balança. Rejeitar deformações, repetição involuntária de objetos e acréscimos não pedidos, incluindo uma espada por associação automática com Justiça.
+
+## Identificação e campos pendentes
+
+- **Nome:** Dama. **Função narrativa:** figura clássica da Justiça em cenas de humor cotidiano.
+- **Silhueta de referência:** figura alongada, reclinada, um braço erguido com a balança e o outro sustentando o café; novas poses dependem do pedido.
+- Rosto, cabelos, roupas, expressão e pose estão descritos acima; a referência principal continua sendo o PNG original.
+- Autoria, origem e data de criação, direitos de uso, biografia e demais atributos não demonstrados permanecem **pendentes**. A aprovação desta imagem como referência de trabalho não preenche esses campos.
+
+As regras compartilhadas pertencem à [referência-mestra](../visual-system.md#referência-mestra-de-ilustração-e-personagens); esta ficha registra somente a Dama.
