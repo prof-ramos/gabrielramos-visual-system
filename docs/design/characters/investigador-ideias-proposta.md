@@ -73,7 +73,7 @@ Uma imagem de apresentação do personagem, com silhueta clara,
 personalidade reconhecível e acabamento de gravura editorial.
 ```
 
-## Resultado do teste
+## Resultado do teste inicial
 
 Uma candidata gerada em **6 de novembro de 2026**, sem correção automática ou ficha de três vistas. Ferramenta integrada, modelo não identificado; não se afirma Images 2.6. PNG RGB **1122 × 1402**, aproximadamente 4:5.
 
@@ -88,3 +88,17 @@ Artefatos **locais e não publicados no PR**, disponíveis somente no workspace 
 - [Resumo verificável](../../../output/image-production/investigador-ideias/result-summary.json).
 
 A referência original da Dama permaneceu intacta e foi usada só como linguagem/cor. Este teste não altera a imagem aprovada, não canoniza a proposta e não dispara a etapa condicional de três vistas.
+
+## Correção de enquadramento
+
+Após o pedido do usuário para resolver a margem, foi executada **uma correção** sobre a candidata inicial, mantendo a mesma asset key e a linhagem do teste. O enquadramento agora deixa margem marinho nos quatro lados e o sobretudo não toca as laterais. As revisões técnica e visual não observaram alteração material de identidade, objetos ou linguagem; não se afirma identidade pixel a pixel.
+
+Ambos os revisores atribuíram **2 a todos os critérios aplicáveis**, incluindo composição e preservação. Os pareceres foram registrados separadamente para o mesmo SHA; o protocolo ficou **`approved`**, com `verify` retornando `valid: true`. Essa aprovação de execução não aprova a identidade do personagem pelo usuário e não autoriza as três vistas.
+
+PNG RGB **1122 × 1402**, aproximadamente 4:5. SHA-256: `0c5b66c3e697add5fd2e909380de82397b22e71593a46cca9dfb28ff3f4eeb4e`. Ferramenta integrada com modelo não identificado. Orçamento cumulativo: uma geração inicial e **1 das 2 correções permitidas**; nenhuma segunda correção foi necessária. Os originais foram preservados.
+
+Artefatos locais, não publicados no PR:
+
+- [Imagem corrigida selecionada](../../../output/image-production/investigador-ideias/0a8dcc2d-0e0f-41cc-bb1c-e41dc591b256/final/investigador-ideias-margem.png).
+- [Manifest e pareceres](../../../output/image-production/investigador-ideias/0a8dcc2d-0e0f-41cc-bb1c-e41dc591b256/manifest.json) e [prompt exato da correção](../../../output/image-production/investigador-ideias/0a8dcc2d-0e0f-41cc-bb1c-e41dc591b256/work/submitted-prompt.txt).
+- [Resumo verificável da correção](../../../output/image-production/investigador-ideias/correction-1-summary.json).
