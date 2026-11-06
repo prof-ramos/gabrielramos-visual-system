@@ -41,7 +41,7 @@ Fraunces 600 na marca, 500/600 nos títulos. Source Sans 3 em 400 no corpo e 400
 
 O starter usava eyebrow em caixa alta, azul padrão, imagem promocional do Astro e setas acrescentadas a links. Essa combinação serviria para qualquer blog. A revisão remove esses recursos: o contraste marfim/marinho define a estrutura, a pergunta editorial admite Direito, tecnologia, humor e curiosidade sem inventar biografia, e a gravura de um pequeno observatório impossível sobre um livro concentra a expressão surreal.
 
-Não aplicar textura aos campos, textos ou botões. Não numerar conteúdos sem sequência real. Não fabricar categorias, números, credenciais ou links sociais. O dourado existe somente na órbita da gravura. O rosa no CTA e no pequeno corpo celeste tem função pontual. Sem animação automática.
+Não aplicar textura aos campos, textos ou botões. Não numerar conteúdos sem sequência real. Não fabricar categorias, números, credenciais ou links sociais. Na gravura vetorial implementada no site, o dourado está restrito à órbita. Essa descrição da peça existente não limita todas as ilustrações à mesma aplicação: o token continua sendo um detalhe de apoio, como nos pães de queijo da referência da Dama, respeitando a orientação azul monocromática do Droppy e as decisões ainda pendentes na seção de referência-mestra. O rosa no CTA e no pequeno corpo celeste tem função pontual. Sem animação automática.
 
 ## Segunda passagem: implementação
 
