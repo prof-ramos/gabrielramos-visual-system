@@ -73,6 +73,8 @@ RSS: `/rss.xml` · sitemap: `/sitemap-index.xml` · robots: `/robots.txt`. O sit
 
 ## Identidade visual
 
+Para ilustrações e personagens, comece pelo [guia de artes e referência-mestra](docs/design/image-guide.md), pela [ficha da Dama (Justiça)](docs/design/characters/dama.md) e pelo [checklist de aceitação](docs/design/image-guide.md#checklist-de-aceitação). A linguagem comum não torna os atributos da Dama obrigatórios nos demais personagens; o Droppy conserva sua orientação azul documentada, com compatibilização ainda pendente. O padrão ilustrativo complementa a interface clara e os tokens existentes.
+
 O sistema **Gabriel Ramos / Contemporary Editorial Engraving** está documentado em [docs/design/visual-system.md](docs/design/visual-system.md), com tokens, wireframe, crítica e decisões. A [comparação tipográfica](docs/design/type-comparison.html) fica fora das rotas do blog; fontes e licenças são locais. Consulte [a verificação visual](docs/design/qa.md) para evidências e limites do QA.
 
 ## Guia de artes e Dama

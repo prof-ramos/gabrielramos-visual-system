@@ -1,10 +1,32 @@
 # Prompts de especificação para artes
 
-**Estado de todos os textos abaixo: propostas, não executadas e não aprovadas pelo usuário.** Apenas a [imagem original da Dama](references/dama-reference.png) foi fornecida como referência visual aprovada. Os exemplos organizam decisões para revisão; não comprovam fidelidade de um gerador.
+**Estado dos textos abaixo: propostas de especificação, não aprovadas pelo usuário.** Apenas a [imagem original da Dama](references/dama-reference.png) foi fornecida como referência visual aprovada. Os exemplos organizam decisões para revisão; não comprovam fidelidade de um gerador. O estado de execução dos dois exemplos da Dama é registrado separadamente em [prompt-tests.md](prompt-tests.md); a realização de um teste não aprova o prompt ou a candidata.
 
 Antes de reutilizar qualquer texto, consultar o [guia](image-guide.md), a [ficha](characters/dama.md) e abrir visualmente o original. Não substituir a referência por uma descrição genérica de Lady Justice. O nome do arquivo ou seu caminho em um prompt não entrega os pixels a uma ferramenta: a referência deve ser efetivamente anexada quando houver uma geração autorizada.
 
-## Estrutura reutilizável
+## Estrutura comum para personagens
+
+Separar explicitamente estilo, identidade e cena. Os campos abaixo são um roteiro, não uma nova identidade aprovada:
+
+```text
+Objetivo e uso: [mensagem, destino, proporção e área para texto].
+Referência-mestra de estilo: imagem da Dama efetivamente anexada.
+Linguagem comum: gravura editorial, hachuras e pontilhado que constroem
+volume, paleta contida, contraste legível, respiro e humor pela situação.
+Personagem: [nome, ficha e imagem própria efetivamente anexada].
+Identidade: [invariantes exclusivas da ficha, sem copiar atributos da Dama].
+Variante documentada: [paleta/acabamento específico, se existente].
+Cena e mudança solicitada: [pose, gesto, ambiente e objetos necessários].
+Interface e texto: [composição editorial separada e superfícies limpas].
+Evitar: mistura de personagens, props não pedidos, ruído uniforme,
+aparência plástica/3D e cartoon genérico.
+Revisão: comparar estilo com a referência-mestra e identidade com a ficha.
+Pendências: [decisões ainda necessárias; não tratá-las como resolvidas].
+```
+
+Para o Droppy, manter a indicação azul monocromática já registrada e explicitar a pendência de compatibilização descrita no [guia](image-guide.md). Não usar este template para completar identidade visual ainda não definida.
+
+## Estrutura reutilizável da Dama
 
 ```text
 Objetivo e uso: [o que a peça comunica e onde será usada].

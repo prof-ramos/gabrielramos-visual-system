@@ -84,9 +84,11 @@ A aplicação ilustrativa está detalhada no [guia de artes](image-guide.md). A 
 
 Esta referência-mestra é a orientação canônica para ilustrações e personagens do Gabriel Ramos Visual System. Complementa **Contemporary Editorial Engraving** e os tokens existentes, sem substituí-los ou criar uma identidade concorrente.
 
-O vocabulário compartilhado é gravura com linhas finas, hachuras e pontilhado; volume escultórico descrito pelo desenho; marinho e marfim como relação principal; dourado de apoio e rosa em acentos pontuais. A escolha da referência não obriga toda peça a ter fundo escuro. A exceção do **Droppy**, em *Monochromatic Dithered Engraving*, continua monocromática e não deve receber acentos rosa ou dourados automaticamente.
+O vocabulário compartilhado é gravura com linhas finas, hachuras e pontilhado; volume descrito pelo desenho (escultórico na Dama, sem impor sua anatomia aos demais personagens); marinho e marfim como relação principal; dourado de apoio e rosa em acentos pontuais. A escolha da referência não obriga toda peça a ter fundo escuro. A exceção do **Droppy**, em *Monochromatic Dithered Engraving*, continua monocromática e não deve receber acentos rosa ou dourados automaticamente.
 
-**Estilo não é personagem:** técnica e paleta podem ser compartilhadas; venda, balança e xícara pertencem à especificação desta Dama e não devem ser transferidas por padrão a outros personagens. Cada personagem precisa de sua própria referência e ficha.
+**Estilo não é personagem:** técnica e paleta podem ser compartilhadas; venda e balança são atributos da Dama; xícara, café, pães de queijo e biblioteca pertencem à cena de referência. Nenhum desses elementos deve ser transferido por padrão a outros personagens. Cada personagem precisa de sua própria referência e ficha.
+
+**Droppy, decisão pendente:** preservar a orientação azul monocromática já documentada. Ainda falta definir com o usuário até onde o acabamento da referência-mestra se aplica a ele e registrar uma referência visual e ficha próprias. Não aplicar-lhe automaticamente marfim, rosa ou dourado, nem declarar sua variante azul revogada ou definitiva além do que já foi documentado.
 
 ### Fichas e composição
 
@@ -97,11 +99,11 @@ Cada ficha registra nome, função narrativa, silhueta, rosto, cabelo, roupas, e
 - **Capas:** usar objetos pertinentes ao tema, sem acrescentar símbolos para preencher espaço.
 - **Fichas de personagem:** manter vistas e elementos separados, sem sobreposição que impeça comparação.
 
-Textura pertence às ilustrações e à decoração. Texto, campos, botões e demais superfícies de interface continuam limpos. Não adotar fotografia, acabamento de render 3D/plástico, neon, textura que prejudique a leitura, alterações dos atributos fixos ou novos tokens sem aprovação. Volume escultórico em uma gravura não significa acabamento plástico ou renderização 3D.
+Textura pertence às ilustrações e à decoração. Texto, campos, botões e demais superfícies de interface continuam limpos. Nas ilustrações desta família, não adotar fotografia, acabamento de render 3D/plástico, neon, textura que prejudique a leitura, alterações dos atributos fixos ou novos tokens sem aprovação. Isso não revoga o uso de fotografias editoriais em artigos previsto acima. Volume escultórico em uma gravura não significa acabamento plástico ou renderização 3D.
 
 ### Revisão, agentes e procedência
 
-Revisar técnica, paleta, atributos fixos, pertinência ao tema, tamanho de uso e leitura. Agentes devem consultar esta seção, o [guia operacional](image-guide.md), a ficha específica e a imagem efetiva; quando houver geração autorizada, anexar a referência real à ferramenta. Descrição textual ou caminho de arquivo não substituem os pixels. Isso orienta a consistência, sem garantir igualdade entre gerações. Consulte os [resultados observados nos testes](prompt-tests.md).
+Revisar técnica, paleta, atributos fixos, pertinência ao tema, tamanho de uso e leitura. Agentes devem consultar esta seção, o [guia operacional](image-guide.md), a ficha específica e a imagem efetiva; quando houver geração autorizada, anexar a referência real à ferramenta. Descrição textual ou caminho de arquivo não substituem os pixels. Isso orienta a consistência, sem garantir igualdade entre gerações. Use o [checklist de aceitação](image-guide.md#checklist-de-aceitação) e consulte os [resultados observados nos testes](prompt-tests.md).
 
 | Campo | Registro |
 | --- | --- |

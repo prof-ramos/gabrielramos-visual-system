@@ -1,8 +1,10 @@
-# Ficha da Dama
+# Ficha da Dama (Justiça)
 
 **Estado:** imagem de referência aprovada pelo usuário; ficha descritiva derivada de inspeção visual e do briefing, ainda sujeita à revisão do usuário. Não é uma nova imagem aprovada.
 
-**Referência canônica:** [dama-reference.png](../references/dama-reference.png). Veja a [proveniência](../references/README.md) e o [guia de artes](../image-guide.md). A Dama é distinta do Droppy; não transferir automaticamente feições, anatomia ou técnica de um personagem ao outro.
+**Referência canônica:** [dama-reference.png](../references/dama-reference.png). Veja a [proveniência](../references/README.md) e o [guia de artes](../image-guide.md). A Dama é distinta do Droppy; não transferir automaticamente feições, anatomia ou acabamento específico de um personagem ao outro sem avaliar sua ficha própria.
+
+**Papel no sistema:** personagem da Justiça e exemplo visual da linguagem ilustrativa comum. Esta ficha governa sua identidade; [a referência-mestra do sistema](../visual-system.md#referência-mestra-de-ilustração-e-personagens) distingue o estilo da família dos atributos exclusivos dela. A referência não transforma todos os personagens em figuras humanas clássicas.
 
 ## O que a referência mostra
 
@@ -28,7 +30,7 @@ Estas são regras de direção artística, não garantia técnica de consistênc
 
 ## Variáveis de cena
 
-- **Pose e enquadramento:** reclinada é a pose aprovada desta imagem. Outras poses, gestos, recortes e proporções podem ser propostos de acordo com o pedido, sem criar uma nova identidade.
+- **Pose e enquadramento:** reclinada é a pose aprovada desta imagem. Outras poses, gestos, recortes e proporções podem ser propostos de acordo com o pedido, sem criar uma nova identidade. O braço erguido e a balança sustentada pela mão são a pose da referência, não uma pose fixa obrigatória; a posição do símbolo deve seguir a cena solicitada.
 - **Ambiente:** biblioteca e pilha de livros pertencem à cena de referência; a ambientação pode variar quando o briefing pedir.
 - **Objetos cotidianos:** café, xícara, pires, vapor e pães de queijo definem a cena aprovada. Não são obrigatórios em toda futura imagem. Se forem mantidos, preservar o tratamento rosa da xícara e dourado dos pães, salvo orientação explícita.
 - **Expressão:** conservar a presença reconhecível e o humor sutil; mudanças expressivas maiores precisam ser propostas e comparadas com a imagem.
