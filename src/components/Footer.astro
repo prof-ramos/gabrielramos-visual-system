@@ -1,0 +1,16 @@
+<footer class="on-navy">
+  <div class="container footer-inner">
+    <div><p class="signature">GabrielRamos<span aria-hidden="true">.</span></p><p class="footer-note">A curiosidade continua.</p></div>
+    <div class="footer-links"><a href="/rss.xml">Acompanhar por RSS</a><p>&copy; {new Date().getFullYear()} SherlockRamos</p></div>
+  </div>
+</footer>
+<style>
+  footer { background: var(--navy); color: var(--ivory); margin-top: 6rem; padding-block: 3.5rem; }
+  .footer-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+  .signature { font: 600 1.8rem/1.2 var(--display); letter-spacing: -.05em; margin-bottom: .6rem; }
+  .signature span { color: var(--pink); }
+  .footer-note { color: #c6d0d3; font-size: 1rem; margin: 0; }
+  .footer-links { text-align: right; font-size: 1rem; }
+  .footer-links p { font-size: .9rem; color: #c6d0d3; margin: .75rem 0 0; }
+  @media (max-width: 680px) { footer { margin-top: 4rem; padding-block: 2.5rem; } .footer-inner { align-items: flex-start; flex-direction: column; } .footer-links { text-align: left; } }
+</style>

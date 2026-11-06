@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+interface Props { posts: CollectionEntry<'blog'>[]; headingLevel?: 2 | 3; }
+const { posts, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+---
+{posts.length ? <ul class="post-list">
+  {posts.map(post => <li>
+    <div class="post-meta"><FormattedDate date={post.data.pubDate} />{post.data.example && <span>Publicação de exemplo</span>}</div>
+    <article><Heading class="post-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></Heading><p>{post.data.description}</p></article>
+  </li>)}
+</ul> : <p>As primeiras publicações estarão aqui em breve. <a href="/rss.xml">Acompanhe o feed RSS</a>.</p>}
+<style>
+  .post-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+  li { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 3rem; padding-block: 2.5rem; border-bottom: 1px solid var(--border); }
+  .post-meta { color: var(--muted); font-size: .95rem; padding-top: .3rem; }
+  .post-meta span { display: block; margin-top: .3rem; }
+  .post-title { font-size: clamp(1.5rem, 2.2vw, 2rem); max-width: 26ch; margin-bottom: .8rem; }
+  .post-title a { text-decoration: none; }
+  .post-title a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+  article p { max-width: 58ch; margin: 0; }
+  @media (max-width: 680px) { li { grid-template-columns: 1fr; gap: 1rem; padding-block: 2rem; } .post-meta { display: flex; flex-wrap: wrap; gap: .5rem 1rem; } .post-meta span { margin: 0; } }
+</style>
