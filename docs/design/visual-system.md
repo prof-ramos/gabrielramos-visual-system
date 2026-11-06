@@ -71,3 +71,7 @@ A combinação pode ser descrita como **Vintage Engraving Halftone**. Termos út
 Para o **Droppy**, a denominação específica é **Monochromatic Dithered Engraving**: paleta azul monocromática, pontos digitais e detalhamento tradicional de gravura. Essa orientação vale para sua linguagem ilustrativa; preserva a identidade mãe **Contemporary Editorial Engraving** e sua paleta marfim, marinho, rosa e dourado de apoio. Textura continua concentrada em ilustrações e decoração; leitura, campos e botões permanecem limpos.
 
 Referências estéticas ou links comerciais não são autorização nem licença de uso de assets. Esta atualização não altera a ilustração existente nem incorpora imagens externas.
+
+## Guia de artes e personagens
+
+A aplicação ilustrativa está detalhada no [guia de artes](image-guide.md). A [ficha da Dama](characters/dama.md) deriva da [referência original aprovada e preservada](references/dama-reference.png), inspecionada nesta etapa; ela não se confunde com o Droppy. Os [prompts](image-prompts.md) são propostas de especificação para revisão, sem novas imagens aprovadas. Fontes, limites e a diferença entre anúncio e capacidade efetivamente verificada estão em [sources-images.md](sources-images.md).

@@ -74,3 +74,9 @@ RSS: `/rss.xml` · sitemap: `/sitemap-index.xml` · robots: `/robots.txt`. O sit
 ## Identidade visual
 
 O sistema **Gabriel Ramos / Contemporary Editorial Engraving** está documentado em [docs/design/visual-system.md](docs/design/visual-system.md), com tokens, wireframe, crítica e decisões. A [comparação tipográfica](docs/design/type-comparison.html) fica fora das rotas do blog; fontes e licenças são locais. Consulte [a verificação visual](docs/design/qa.md) para evidências e limites do QA.
+
+## Guia de artes e Dama
+
+A branch `gerador-image` inicia o [guia de artes](docs/design/image-guide.md), a [ficha da Dama](docs/design/characters/dama.md) e os [prompts de especificação propostos](docs/design/image-prompts.md). A [referência visual original](docs/design/references/dama-reference.png) foi preservada sem alterações, com [SHA e proveniência](docs/design/references/README.md), fora dos assets publicados pelo blog. Consulte também as [fontes oficiais e limitações](docs/design/sources-images.md). Esta etapa é documental; não executa geração de imagens.
+
+Os testes posteriores dos dois exemplos de prompt são registrados em [docs/design/prompt-tests.md](docs/design/prompt-tests.md), separando resultados observados de aprovação do usuário. Imagens de teste e manifests permanecem nos artefatos locais ignorados pelo Git.
