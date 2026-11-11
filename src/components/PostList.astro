@@ -6,19 +6,24 @@ const { posts, headingLevel = 3 } = Astro.props;
 const Heading = `h${headingLevel}` as 'h2' | 'h3';
 ---
 {posts.length ? <ul class="post-list">
-  {posts.map(post => <li>
+  {posts.map(post => <li class="rail-grid">
     <div class="post-meta"><FormattedDate date={post.data.pubDate} />{post.data.example && <span>Publicação de exemplo</span>}</div>
     <article><Heading class="post-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></Heading><p>{post.data.description}</p></article>
   </li>)}
-</ul> : <p>As primeiras publicações estarão aqui em breve. <a href="/rss.xml">Acompanhe o feed RSS</a>.</p>}
+</ul> : <p class="empty">As primeiras publicações estarão aqui em breve. <a class="text-link" href="/rss.xml">Acompanhe o feed RSS</a>.</p>}
 <style>
-  .post-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
-  li { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 3rem; padding-block: 2.5rem; border-bottom: 1px solid var(--border); }
-  .post-meta { color: var(--muted); font-size: .95rem; padding-top: .3rem; }
-  .post-meta span { display: block; margin-top: .3rem; }
-  .post-title { font-size: clamp(1.5rem, 2.2vw, 2rem); max-width: 26ch; margin-bottom: .8rem; }
-  .post-title a { text-decoration: none; }
-  .post-title a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
-  article p { max-width: 58ch; margin: 0; }
-  @media (max-width: 680px) { li { grid-template-columns: 1fr; gap: 1rem; padding-block: 2rem; } .post-meta { display: flex; flex-wrap: wrap; gap: .5rem 1rem; } .post-meta span { margin: 0; } }
+  .post-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--navy); }
+  /* A linha inteira é o alvo do link; o título responde ao hover em qualquer ponto dela. */
+  li { position: relative; padding-block: 2.25rem; border-bottom: 1px solid var(--border); }
+  .post-meta { color: var(--muted); font-size: .95rem; line-height: 1.5; padding-top: .45rem; }
+  .post-meta span { display: block; margin-top: .2rem; }
+  .post-title { font-size: clamp(1.5rem, 2.3vw, 2rem); line-height: 1.15; max-width: 24ch; margin-bottom: .6rem; }
+  .post-title a { text-decoration: none; background: linear-gradient(var(--pink), var(--pink)) no-repeat 0 100% / 0 .14em; transition: background-size .2s ease; padding-bottom: .08em; }
+  .post-title a::after { content: ''; position: absolute; inset: 0; }
+  li:hover .post-title a, .post-title a:focus-visible { background-size: 100% .14em; }
+  .post-title a:focus-visible { outline: none; }
+  li:has(.post-title a:focus-visible) { outline: 3px solid var(--navy); outline-offset: 4px; border-radius: 2px; }
+  article p { max-width: 56ch; margin: 0; }
+  .empty { padding-block: 2rem; border-top: 1px solid var(--navy); }
+  @media (max-width: 860px) { li { row-gap: .6rem; padding-block: 1.75rem; } .post-meta { display: flex; flex-wrap: wrap; gap: .1rem 1rem; padding: 0; } .post-meta span { margin: 0; } }
 </style>

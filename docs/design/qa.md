@@ -1,5 +1,16 @@
 # Verificação da identidade visual
 
+## Revisão de UI/UX — 11 de novembro de 2026
+
+Verificação em Chromium headless (Playwright) sobre o preview de produção. As seções seguintes descrevem a passagem de 6 de novembro e permanecem como registro histórico; contagens de arquivos e bytes daquela passagem não foram refeitas.
+
+- `npm run build`: `astro check` com zero erros, avisos e hints; cinco páginas geradas.
+- Sem overflow horizontal em início, arquivo, artigo e Sobre nas larguras 320, 360, 390, 768, 1024 e 1440px; 404 conferido em 390 e 1440px.
+- Fraunces e Source Sans 3 carregadas (`document.fonts.check`); nenhuma fonte ou script remoto acrescentado.
+- Capturas inspecionadas: todas as páginas em 1440 e 390px, início em 320px, hover de link de texto e foco por teclado na capa.
+- Contrastes novos pela fórmula WCAG: texto marfim/marinho no hover do CTA 13,10:1; marinho sobre marca-texto rosa 7,38:1. Áreas de toque da navegação com 48px de altura.
+- Não executados: auditoria automatizada de acessibilidade, leitor de tela, outros navegadores e deploy.
+
 Executada em 6 de novembro de 2026. QA real em Chromium via ego-browser, num Agent Space exclusivo, encerrado ao terminar. O navegador integrado não estava disponível nesta sessão (host de browser indisponível). Nenhuma aba pessoal foi usada.
 
 ## Evidências

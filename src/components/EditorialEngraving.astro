@@ -1,39 +1,208 @@
 ---
-// An impossible observatory: a celestial globe suspended over engraved book leaves.
-// Decorative geometry only; deliberately not a mascot or a definitive brand mark.
-const latitudes = Array.from({ length: 21 }, (_, i) => ({ y: 172 + (i - 10) * 9, rx: Math.sqrt(1 - ((i - 10) / 11) ** 2) * 105 }));
-const meridians = Array.from({ length: 17 }, (_, i) => 9 + i * 6);
-const dots = Array.from({ length: 95 }, (_, i) => ({ x: 254 + Math.cos(i * 2.39996) * Math.sqrt(i / 95) * 100, y: 171 + Math.sin(i * 2.39996) * Math.sqrt(i / 95) * 100, r: i % 4 === 0 ? 1 : .55 }));
+// Prancha de gravura: um globo celeste suspenso sobre um livro aberto.
+// Marfim sobre marinho, como na referência-mestra; volume construído por
+// hachuras e pontilhado calculados a partir de uma única fonte de luz.
+// Geometria decorativa: não é mascote nem símbolo definitivo da marca.
+const W = 560, H = 520;
+const cx = 280, cy = 206, R = 122;
+const f = (n: number) => Math.round(n * 10) / 10;
+
+// Gerador determinístico: o desenho é idêntico a cada build.
+let seed = 20261106;
+const rand = () => {
+  seed = (seed + 0x6d2b79f5) | 0;
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+
+// Luz vinda do alto, à esquerda, na direção do observador.
+const Lraw = [-0.52, 0.56, 0.64];
+const Ll = Math.hypot(...Lraw);
+const L = Lraw.map((v) => v / Ll);
+const lightAt = (px: number, py: number) => {
+  const nx = (px - cx) / R, ny = -(py - cy) / R;
+  const d = nx * nx + ny * ny;
+  if (d >= 1) return null;
+  return nx * L[0] + ny * L[1] + Math.sqrt(1 - d) * L[2];
+};
+
+// Hachuras retas, mantidas somente onde a esfera está abaixo do limiar de luz.
+const hatch = (deg: number, gap: number, limit: number, inset = 2) => {
+  const a = (deg * Math.PI) / 180, dx = Math.cos(a), dy = Math.sin(a);
+  let d = '';
+  for (let k = -R; k <= R; k += gap) {
+    let start: number[] | null = null, last: number[] | null = null;
+    for (let u = -R; u <= R + 1; u += 1.5) {
+      const px = cx - dy * k + dx * u, py = cy + dx * k + dy * u;
+      const inside = Math.hypot(px - cx, py - cy) < R - inset;
+      const lit = inside ? lightAt(px, py) : null;
+      if (lit !== null && lit < limit) { start ??= [px, py]; last = [px, py]; }
+      else if (start && last) { d += `M${f(start[0])} ${f(start[1])}L${f(last[0])} ${f(last[1])}`; start = last = null; }
+    }
+  }
+  return d;
+};
+const shade = hatch(-38, 4.6, 0.34);
+const crossShade = hatch(34, 4.6, 0.02);
+
+// Pontilhado na passagem entre luz e sombra.
+const stipple: { x: number; y: number; r: number }[] = [];
+while (stipple.length < 760) {
+  const x = cx + (rand() * 2 - 1) * R, y = cy + (rand() * 2 - 1) * R;
+  if (Math.hypot(x - cx, y - cy) > R - 3) continue;
+  const lit = lightAt(x, y);
+  if (lit === null || lit < 0.34 || lit > 0.8) continue;
+  if (rand() < ((0.8 - lit) / 0.46) ** 1.7) stipple.push({ x: f(x), y: f(y), r: rand() < 0.25 ? 0.8 : 0.55 });
+}
+
+// Paralelos e meridianos em projeção ortográfica de um eixo inclinado.
+const tilt = (24 * Math.PI) / 180, roll = (-21 * Math.PI) / 180;
+const project = (lat: number, lon: number) => {
+  const x = Math.cos(lat) * Math.cos(lon), y = Math.sin(lat), z = Math.cos(lat) * Math.sin(lon);
+  const y1 = y * Math.cos(tilt) - z * Math.sin(tilt), z1 = y * Math.sin(tilt) + z * Math.cos(tilt);
+  return { x: cx + R * (x * Math.cos(roll) - y1 * Math.sin(roll)), y: cy - R * (x * Math.sin(roll) + y1 * Math.cos(roll)), front: z1 > 0.02 };
+};
+const trace = (point: (t: number) => ReturnType<typeof project>, from: number, to: number) => {
+  let d = '', pen = false;
+  for (let i = 0; i <= 96; i++) {
+    const p = point(from + ((to - from) * i) / 96);
+    if (p.front) { d += `${pen ? 'L' : 'M'}${f(p.x)} ${f(p.y)}`; pen = true; } else pen = false;
+  }
+  return d;
+};
+const rad = (deg: number) => (deg * Math.PI) / 180;
+let graticule = '';
+for (let lat = -75; lat <= 75; lat += 15) graticule += trace((t) => project(rad(lat), t), 0, Math.PI * 2);
+for (let lon = 0; lon < 360; lon += 15) graticule += trace((t) => project(t, rad(lon)), rad(-82), rad(82));
+const equator = trace((t) => project(0, t), 0, Math.PI * 2);
+
+// Órbita: a metade de trás é desenhada antes da esfera; a da frente, depois.
+const orbitTilt = rad(-19);
+const orbitPoint = (rx: number, ry: number, t: number) => ({
+  x: cx + rx * Math.cos(t) * Math.cos(orbitTilt) - ry * Math.sin(t) * Math.sin(orbitTilt),
+  y: cy + rx * Math.cos(t) * Math.sin(orbitTilt) + ry * Math.sin(t) * Math.cos(orbitTilt),
+});
+const orbit = (rx: number, ry: number, from: number, to: number) => {
+  let d = '';
+  for (let i = 0; i <= 72; i++) { const p = orbitPoint(rx, ry, from + ((to - from) * i) / 72); d += `${i ? 'L' : 'M'}${f(p.x)} ${f(p.y)}`; }
+  return d;
+};
+const orbitBack = orbit(214, 54, Math.PI, Math.PI * 2) + orbit(223, 59, Math.PI, Math.PI * 2);
+const orbitFront = orbit(214, 54, 0, Math.PI);
+const orbitFrontOuter = orbit(223, 59, 0, Math.PI);
+const moon = orbitPoint(218, 56, rad(-34));
+const moonR = 17;
+let moonShade = '';
+for (let k = -moonR; k <= moonR; k += 3.4) {
+  // Sombra do pequeno corpo: crescente oposto à luz.
+  const pts: number[][] = [];
+  for (let u = -moonR; u <= moonR; u += 0.8) {
+    const px = moon.x + 0.79 * u + 0.62 * k, py = moon.y - 0.62 * u + 0.79 * k;
+    if (Math.hypot(px - moon.x, py - moon.y) < moonR - 1.2 && Math.hypot(px - (moon.x - 7), py - (moon.y - 7.5)) > moonR - 1) pts.push([px, py]);
+  }
+  if (pts.length > 1) moonShade += `M${f(pts[0][0])} ${f(pts[0][1])}L${f(pts.at(-1)![0])} ${f(pts.at(-1)![1])}`;
+}
+
+// Livro aberto: bordas superior e inferior de cada página são curvas quadráticas.
+const quad = (a: number[], c: number[], b: number[], t: number) => [(1 - t) ** 2 * a[0] + 2 * (1 - t) * t * c[0] + t * t * b[0], (1 - t) ** 2 * a[1] + 2 * (1 - t) * t * c[1] + t * t * b[1]];
+const pageTop = { a: [280, 408], c: [196, 372], b: [92, 392] };
+const pageBottom = { a: [280, 470], c: [192, 434], b: [84, 452] };
+const mirror = (p: number[]) => [560 - p[0], p[1]];
+const pagePath = (flip: boolean) => {
+  const m = (p: number[]) => (flip ? mirror(p) : p).join(' ');
+  return `M${m(pageTop.a)}Q${m(pageTop.c)} ${m(pageTop.b)}L${m(pageBottom.b)}Q${m(pageBottom.c)} ${m(pageBottom.a)}Z`;
+};
+let textLines = '';
+for (const flip of [false, true]) {
+  for (let i = 1; i <= 11; i++) {
+    const v = i / 12.4;
+    // Linhas de texto com final irregular e uma quebra de parágrafo.
+    // t cresce da lombada (0) para a margem externa (1); a leitura corre da esquerda para a direita.
+    const ragged = rand() * 0.07, short = i === 5;
+    const from = flip ? 0.09 : short ? 0.46 : 0.09 + ragged;
+    const to = flip ? (short ? 0.5 : 0.88 - ragged) : 0.88;
+    let d = '';
+    for (let s = 0; s <= 14; s++) {
+      const t = from + ((to - from) * s) / 14;
+      const top = quad(pageTop.a, pageTop.c, pageTop.b, t), bottom = quad(pageBottom.a, pageBottom.c, pageBottom.b, t);
+      const p = [top[0] + (bottom[0] - top[0]) * v, top[1] + (bottom[1] - top[1]) * v];
+      const q = flip ? mirror(p) : p;
+      d += `${s ? 'L' : 'M'}${f(q[0])} ${f(q[1])}`;
+    }
+    textLines += d;
+  }
+}
+const pageEdges = [5, 10, 15].map((o) => `M${84 - o * 0.5} ${452 + o}Q192 ${434 + o} 280 ${470 + o}Q368 ${434 + o} ${476 + o * 0.5} ${452 + o}`);
+
+// Sombra projetada do globo sobre as páginas.
+let castShadow = '';
+for (let x = 200; x <= 360; x += 5.2) {
+  const half = 15 * Math.sqrt(Math.max(0, 1 - ((x - 280) / 86) ** 2));
+  if (half > 1.5) castShadow += `M${f(x + 3)} ${f(424 - half)}L${f(x - 3)} ${f(424 + half)}`;
+}
+
+// Céu: pontos esparsos fora do globo e poeira pontilhada sob o livro.
+const sky: { x: number; y: number; r: number }[] = [];
+while (sky.length < 70) {
+  const x = 26 + rand() * (W - 52), y = 26 + rand() * 330;
+  if (Math.hypot(x - cx, y - cy) < R + 16) continue;
+  sky.push({ x: f(x), y: f(y), r: rand() < 0.14 ? 1.3 : 0.6 });
+}
+const dust: { x: number; y: number; r: number }[] = [];
+while (dust.length < 330) {
+  const a = rand() * Math.PI * 2, m = Math.sqrt(rand());
+  const x = 280 + Math.cos(a) * m * 236, y = 484 + Math.sin(a) * m * 15;
+  if (rand() < 1 - m * 0.75) dust.push({ x: f(x), y: f(y), r: rand() < 0.25 ? 0.9 : 0.55 });
+}
+const sparks = [[92, 96, 7], [452, 258, 5.5], [344, 44, 4.5], [118, 306, 4], [478, 62, 3.5]];
 ---
-<svg viewBox="0 0 520 430" fill="none" aria-hidden="true" focusable="false" class="engraving">
+<svg viewBox={`0 0 ${W} ${H}`} fill="none" aria-hidden="true" focusable="false" class="engraving">
   <defs>
-    <clipPath id="globe-clip"><circle cx="254" cy="172" r="105" /></clipPath>
-    <pattern id="page-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)"><path d="M0 0V7" stroke="currentColor" stroke-width=".6" /></pattern>
+    <clipPath id="eng-globe"><circle cx={cx} cy={cy} r={R} /></clipPath>
+    <clipPath id="eng-pages"><path d={pagePath(false) + pagePath(true)} /></clipPath>
+    <clipPath id="eng-moon"><circle cx={f(moon.x)} cy={f(moon.y)} r={moonR} /></clipPath>
   </defs>
-  <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M75 315Q163 285 253 325Q333 282 438 300L445 354Q339 346 254 381Q165 350 69 369Z" fill="var(--ivory)" stroke-width="1.7" />
-    <path d="M83 306Q169 282 253 325Q338 274 430 291L438 337Q336 330 254 370Q168 333 78 352Z" fill="url(#page-hatch)" stroke-width="1.2" />
-    <path d="M88 291Q170 267 253 311Q333 261 421 279L430 322Q337 314 254 356Q171 318 84 335Z" fill="var(--ivory)" stroke-width="1.7" />
-    {Array.from({length: 12}, (_, i) => <path d={`M${96-i*.5} ${298+i*2.5}Q169 ${276+i*2.7} 246 ${316+i*2.7}M261 ${316+i*2.7}Q337 ${270+i*2.8} ${415+i*.5} ${287+i*2.7}`} stroke-width=".65" opacity={.45+i*.035} />)}
-    <path d="M253 311L254 356M254 370V381" stroke-width="1.6" />
-    <path d="M115 389Q248 416 409 378M145 401Q250 420 367 396" opacity=".3" stroke-width=".6" />
-    <circle cx="254" cy="172" r="110" stroke-width=".65" />
-    <circle cx="254" cy="172" r="105" fill="var(--ivory)" stroke-width="1.6" />
-    <g clip-path="url(#globe-clip)">
-      {latitudes.map(l => <ellipse cx="254" cy={l.y} rx={l.rx} ry={8 + (l.y-82)/10} stroke-width=".7" />)}
-      {meridians.map(rx => <ellipse cx="254" cy="172" rx={rx} ry="105" transform="rotate(-23 254 172)" stroke-width=".65" />)}
-      {dots.map(dot => <circle cx={dot.x} cy={dot.y} r={dot.r} fill="currentColor" stroke="none" />)}
-      <path d="M148 180Q185 232 234 259Q279 283 335 246L363 289H137Z" fill="currentColor" opacity=".12" stroke="none" />
+  <rect width={W} height={H} rx="6" fill="var(--navy)" />
+  <rect x="11.5" y="11.5" width={W - 23} height={H - 23} rx="2" stroke="var(--ivory)" stroke-opacity=".3" />
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <g fill="var(--ivory)">
+      {sky.map((p) => <circle cx={p.x} cy={p.y} r={p.r} opacity={p.r > 1 ? 0.9 : 0.55} />)}
+      {dust.map((p) => <circle cx={p.x} cy={p.y} r={p.r} opacity=".6" />)}
     </g>
-    <ellipse cx="254" cy="172" rx="177" ry="44" transform="rotate(-26 254 172)" stroke="var(--gold)" stroke-width="1.4" />
-    <ellipse cx="254" cy="172" rx="183" ry="48" transform="rotate(-26 254 172)" stroke="var(--gold)" stroke-width=".55" />
-    <path d="M94 235Q178 279 355 174" stroke="var(--ivory)" stroke-width="5" />
-    <path d="M94 235Q178 279 355 174" stroke="var(--gold)" stroke-width="1.3" />
-    <circle cx="397" cy="91" r="23" fill="var(--pink)" stroke="none" />
-    {Array.from({length: 7}, (_,i) => <path d={`M${381+i*1.7} ${106-i*4}l${9+i*1.9} -${2+i*.9}`} opacity=".55" stroke-width=".65" />)}
-    <path d="M115 99h14m-7-7v14M407 242h10m-5-5v10M305 35h8m-4-4v8" stroke-width="1" />
-    <circle cx="164" cy="47" r="1.7" fill="currentColor" stroke="none" /><circle cx="441" cy="171" r="1.1" fill="currentColor" stroke="none" /><circle cx="76" cy="178" r="1.1" fill="currentColor" stroke="none" />
-    <path d="M248 287v8m10-7v11m-21-6v5" stroke-width=".65" opacity=".5" />
+    <path d={sparks.map(([x, y, s]) => `M${x - s} ${y}h${s * 2}M${x} ${y - s}v${s * 2}`).join('')} stroke="var(--ivory)" stroke-width="1.1" />
+    <path d={orbitBack} stroke="var(--gold)" stroke-width="1.2" />
+
+    <circle cx={cx} cy={cy} r={R + 6} stroke="var(--ivory)" stroke-width=".7" stroke-opacity=".55" />
+    <circle cx={cx} cy={cy} r={R} fill="var(--ivory)" />
+    <g clip-path="url(#eng-globe)" stroke="var(--navy)">
+      <path d={graticule} stroke-width=".55" stroke-opacity=".5" />
+      <path d={equator} stroke-width="1.1" stroke-opacity=".75" />
+      <path d={shade} stroke-width=".75" />
+      <path d={crossShade} stroke-width=".75" />
+      <g fill="var(--navy)" stroke="none">{stipple.map((p) => <circle cx={p.x} cy={p.y} r={p.r} />)}</g>
+      <path d={orbitFront} stroke="var(--ivory)" stroke-width="7" />
+    </g>
+    <path d={orbitFront} stroke="var(--gold)" stroke-width="1.9" />
+    <path d={orbitFrontOuter} stroke="var(--gold)" stroke-width=".8" />
+
+    <circle cx={f(moon.x)} cy={f(moon.y)} r={moonR + 4} fill="var(--navy)" />
+    <circle cx={f(moon.x)} cy={f(moon.y)} r={moonR} fill="var(--pink)" />
+    <path d={moonShade} stroke="var(--navy)" stroke-width=".8" clip-path="url(#eng-moon)" />
+
+    <path d="M270 340v9M280 336v15M290 340v9" stroke="var(--ivory)" stroke-width=".9" stroke-opacity=".6" />
+
+    <path d="M70 446Q186 426 280 468Q374 426 490 446L494 478Q380 462 280 496Q180 462 66 478Z" fill="var(--ivory)" fill-opacity=".14" stroke="var(--ivory)" stroke-width="1.1" />
+    {pageEdges.map((d) => <path d={d} stroke="var(--ivory)" stroke-width=".9" stroke-opacity=".75" />)}
+    <path d={pagePath(false) + pagePath(true)} fill="var(--ivory)" />
+    <g clip-path="url(#eng-pages)" stroke="var(--navy)">
+      <path d={textLines} stroke-width=".7" stroke-opacity=".6" />
+      <path d={castShadow} stroke-width=".65" stroke-opacity=".8" />
+      <path d="M280 408V470" stroke-width="1.5" />
+      <path d="M273 406Q276 438 274 468M287 406Q284 438 286 468" stroke-width=".6" stroke-opacity=".6" />
+    </g>
   </g>
 </svg>
-<style>.engraving { color: var(--navy); width: 100%; height: auto; }</style>
+<style>
+  .engraving { width: 100%; height: auto; }
+</style>

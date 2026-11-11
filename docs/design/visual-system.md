@@ -17,16 +17,16 @@ Fraunces 600 na marca, 500/600 nos títulos. Source Sans 3 em 400 no corpo e 400
 
 ### Duas estruturas consideradas
 
-**Hero bipartido, escolhido:** pergunta editorial à esquerda, estudo de gravura à direita. Publicações em lista ampla e silenciosa, mantendo a arte como único gesto expressivo.
+**Hero bipartido, escolhido:** pergunta editorial à esquerda, prancha de gravura à direita. Publicações em lista ampla e silenciosa, mantendo a arte como único gesto expressivo.
 
 ```text
 ┌───────────────────────────────────────────────────┐
 │ SherlockRamos                  Início Blog Sobre  │ marinho
 ├───────────────────────────────────────────────────┤
-│ E se a pergunta         [esfera gravada suspensa   │
-│ for outra?               sobre páginas de livro]  │ marfim
+│ E se a pergunta         [prancha marinho: globo    │
+│ for outra?               gravado sobre um livro]  │ marfim
 │ Direito, tecnologia...                            │
-│ [Ler as publicações]                              │
+│ [Ler as publicações]  Sobre este espaço           │
 ├───────────────────────────────────────────────────┤
 │ Publicações recentes                   Ver todas  │
 │ data             título + descrição               │
@@ -45,7 +45,7 @@ Não aplicar textura aos campos, textos ou botões. Não numerar conteúdos sem 
 
 ## Segunda passagem: implementação
 
-A gravura vetorial é decoração original, não mascote nem símbolo definitivo da marca. Curvas de latitude, meridianos, pontilhado e folhas hachuradas evocam engraving/etching em uma composição de livro e esfera. O asset promocional do Astro foi inspecionado e preservado intacto no disco, mas retirado das superfícies públicas por incompatibilidade com o sistema.
+A gravura vetorial é decoração original, não mascote nem símbolo definitivo da marca. Na revisão de 11 de novembro de 2026 ela passou a ser uma **prancha**: figura em marfim sobre campo marinho, a mesma relação da referência-mestra, contida na ilustração e sem alterar o tema claro do site. Paralelos e meridianos seguem uma projeção ortográfica; hachuras, hachuras cruzadas e pontilhado são calculados a partir de uma única fonte de luz, de modo que a textura descreve volume em vez de preencher. A órbita passa por trás e pela frente do globo; o dourado continua restrito a ela e o rosa ao pequeno corpo celeste. O desenho é determinístico (semente fixa), gerado no build, sem script no cliente. O asset promocional do Astro foi inspecionado e preservado intacto no disco, mas retirado das superfícies públicas por incompatibilidade com o sistema.
 
 A comparação tipográfica fica em `type-comparison.html`, fora das rotas do produto: Fraunces/Source Sans 3 versus Geist. Geist não substitui a seleção do briefing. As decisões de contraste, respiração e hierarquia são verificadas em navegador; resultados estão em `qa.md`.
 
@@ -53,6 +53,8 @@ A comparação tipográfica fica em `type-comparison.html`, fora das rotas do pr
 
 - Tokens globais: `src/styles/global.css`; fontes: `src/styles/fonts.css`.
 - Componentes compartilhados: Header, Footer, PostList e EditorialEngraving.
+- Grade editorial única (`.rail-grid`): trilho de metadados de 190px + coluna de leitura. A lista de publicações e o artigo usam a mesma grade, de modo que título, texto e rodapé do artigo compartilham uma só margem esquerda; abaixo de 860px o trilho sobe para o topo.
+- Links de texto (`.text-link`, `.prose a`): sublinhado fino em repouso e marca-texto rosa com texto marinho no hover. Na lista, a linha inteira é o alvo do link e o título recebe um traço rosa. O CTA inverte para marinho com texto marfim. Transições só em resposta a interação e desativadas com `prefers-reduced-motion`.
 - Páginas limpas de leitura em marfim; a gravura aparece na capa e no contexto Sobre.
 - Feed, canonical, robots, sitemap, Markdown e publicação estática no Pages permanecem funcionais.
 - Fotografias editoriais futuras podem ser usadas nos artigos; a imagem promocional do starter não deve voltar como fallback.
