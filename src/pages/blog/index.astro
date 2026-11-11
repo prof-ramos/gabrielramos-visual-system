@@ -14,8 +14,42 @@ const posts = await getPublishedPosts();
     <Header />
     <main tabindex="-1" id="conteudo" class="container">
       <div class="page-intro"><h1>Publicações</h1><p class="lede">Ideias para olhar de perto. E, às vezes, pelo avesso.</p></div>
+      {posts.length > 0 && <search class="search">
+        <label class="sr-only" for="busca">Buscar nas publicações</label>
+        <input id="busca" type="search" placeholder="Buscar nas publicações" autocomplete="off" spellcheck="false" />
+        <kbd aria-hidden="true">/</kbd>
+      </search>}
+      <p class="sr-only" role="status" data-count></p>
       <PostList posts={posts} headingLevel={2} />
+      <p class="no-results" hidden data-empty>Nenhuma publicação corresponde à busca. <button class="quiet-button" type="button" data-clear>Limpar busca</button></p>
     </main>
     <Footer />
   </body>
 </html>
+<script>
+  // Filtro local e instantâneo, sem requisições; ignora acentos e maiúsculas.
+  const input = document.querySelector<HTMLInputElement>('#busca');
+  const items = [...document.querySelectorAll<HTMLElement>('[data-post]')];
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+  const count = document.querySelector('[data-count]');
+  const fold = (text: string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const index = items.map((item) => fold(item.dataset.search ?? ''));
+  const filter = () => {
+    const terms = fold(input?.value ?? '').split(/\s+/).filter(Boolean);
+    let shown = 0;
+    items.forEach((item, i) => { const match = terms.every((term) => index[i].includes(term)); item.hidden = !match; if (match) shown++; });
+    if (empty) empty.hidden = shown > 0;
+    if (count) count.textContent = terms.length ? `${shown} ${shown === 1 ? 'publicação encontrada' : 'publicações encontradas'}` : '';
+  };
+  input?.addEventListener('input', filter);
+  document.querySelector('[data-clear]')?.addEventListener('click', () => { if (input) { input.value = ''; filter(); input.focus(); } });
+  document.addEventListener('keydown', (event) => {
+    const target = event.target as HTMLElement;
+    if (event.key === '/' && !event.metaKey && !event.ctrlKey && !/^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) { event.preventDefault(); input?.focus(); }
+    if (event.key === 'Escape' && target === input && input) { input.value = ''; filter(); }
+  });
+</script>
+<style>
+  .no-results { padding-block: 2rem; margin: 0; }
+  :global([data-post][hidden]) { display: none; }
+</style>

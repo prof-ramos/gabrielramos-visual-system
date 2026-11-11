@@ -13,6 +13,7 @@ const { title, description, pubDate, updatedDate, heroImage, example, minutes } 
   <head><BaseHead title={title} description={description} image={heroImage} /></head>
   <body>
     <Header />
+    <div class="progress" aria-hidden="true"></div>
     <main tabindex="-1" id="conteudo" class="container">
       <article class="article rail-grid">
         <div class="article-rail">
@@ -22,6 +23,8 @@ const { title, description, pubDate, updatedDate, heroImage, example, minutes } 
             {updatedDate && <div><dt>Atualizado</dt><dd><FormattedDate date={updatedDate} /></dd></div>}
             {minutes && <div><dt>Leitura</dt><dd>{minutes} min</dd></div>}
           </dl>
+          <button class="quiet-button copy-link" type="button" data-copy data-done="Link copiado">Copiar link</button>
+          <span class="sr-only" role="status" data-copy-status></span>
           {example && <p class="example">Publicação de exemplo</p>}
         </div>
         <header class="article-heading"><h1>{title}</h1><p class="lede">{description}</p></header>
@@ -33,11 +36,32 @@ const { title, description, pubDate, updatedDate, heroImage, example, minutes } 
     <Footer />
   </body>
 </html>
+<script>
+  // Copia o endereço do artigo e confirma no próprio botão por dois segundos.
+  const button = document.querySelector<HTMLButtonElement>('[data-copy]');
+  const status = document.querySelector('[data-copy-status]');
+  const label = button?.textContent ?? '';
+  button?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(location.href);
+      button.textContent = button.dataset.done ?? label;
+      if (status) status.textContent = 'Link copiado para a área de transferência.';
+      setTimeout(() => { button.textContent = label; if (status) status.textContent = ''; }, 2000);
+    } catch { if (status) status.textContent = 'Não foi possível copiar o link.'; }
+  });
+</script>
 <style>
+  /* Progresso de leitura atrelado à rolagem; ausente onde o navegador não oferece o recurso. */
+  .progress { display: none; }
+  @supports (animation-timeline: scroll()) {
+    .progress { display: block; position: fixed; inset: 0 0 auto; z-index: 6; height: 3px; background: var(--pink); transform-origin: 0 50%; animation-name: progress; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: scroll(root); }
+  }
+  @keyframes progress { from { scale: 0 1; } }
+  .copy-link { display: block; margin-top: 1rem; font-size: inherit; }
   /* Título, texto e rodapé do artigo compartilham a mesma margem esquerda (coluna 2). */
   .article { padding-top: clamp(2rem, 5vw, 4.5rem); }
   .article > :not(.article-rail) { grid-column: 2; }
-  .article-rail { grid-column: 1; grid-row: 1 / span 4; align-self: start; position: sticky; top: 2rem; font-size: .95rem; line-height: 1.5; padding-top: .6rem; }
+  .article-rail { grid-column: 1; grid-row: 1 / span 4; align-self: start; position: sticky; top: 6rem; font-size: .95rem; line-height: 1.5; padding-top: .6rem; }
   .back-link { display: inline-block; margin-bottom: 2rem; }
   .article-meta { margin: 0; display: grid; gap: .9rem; }
   dt { color: var(--muted); }
@@ -54,6 +78,7 @@ const { title, description, pubDate, updatedDate, heroImage, example, minutes } 
     .back-link { margin-bottom: 1.5rem; }
     .article-meta { display: flex; flex-wrap: wrap; gap: .25rem 1.75rem; }
     .article-meta div { display: flex; gap: .4rem; }
-    .example { margin-top: .75rem; padding: 0; border: 0; }
+    .example { margin-top: .5rem; padding: 0; border: 0; }
+    .copy-link { margin-top: .25rem; }
   }
 </style>

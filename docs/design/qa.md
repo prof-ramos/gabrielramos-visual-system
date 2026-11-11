@@ -9,7 +9,9 @@ Verificação em Chromium headless (Playwright) sobre o preview de produção. A
 - Fraunces e Source Sans 3 carregadas (`document.fonts.check`); nenhuma fonte ou script remoto acrescentado.
 - Capturas inspecionadas: todas as páginas em 1440 e 390px, início em 320px, hover de link de texto e foco por teclado na capa.
 - Contrastes novos pela fórmula WCAG: texto marfim/marinho no hover do CTA 13,10:1; marinho sobre marca-texto rosa 7,38:1. Áreas de toque da navegação com 48px de altura.
-- Não executados: auditoria automatizada de acessibilidade, leitor de tela, outros navegadores e deploy.
+- Movimento e interação (mesma data): cabeçalho medido em 60px após rolagem; busca testada com termos acentuados e em maiúsculas, estado vazio, botão de limpar, atalho `/` e `Esc`; "Copiar link" conferido pela leitura da área de transferência; com `prefers-reduced-motion: reduce` emulado, zero animações em execução e título visível; nenhum erro de console.
+- Defeito encontrado e corrigido nesta passagem: o minificador fundia `animation-timeline` no atalho `animation`, que o Chromium rejeita; as regras usam propriedades longas.
+- Não executados: auditoria automatizada de acessibilidade, leitor de tela, outros navegadores (o comportamento de fallback em Firefox e Safari não foi testado) e deploy. A transição entre páginas não foi capturada em imagem.
 
 Executada em 6 de novembro de 2026. QA real em Chromium via ego-browser, num Agent Space exclusivo, encerrado ao terminar. O navegador integrado não estava disponível nesta sessão (host de browser indisponível). Nenhuma aba pessoal foi usada.
 

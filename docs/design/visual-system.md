@@ -41,7 +41,7 @@ Fraunces 600 na marca, 500/600 nos títulos. Source Sans 3 em 400 no corpo e 400
 
 O starter usava eyebrow em caixa alta, azul padrão, imagem promocional do Astro e setas acrescentadas a links. Essa combinação serviria para qualquer blog. A revisão remove esses recursos: o contraste marfim/marinho define a estrutura, a pergunta editorial admite Direito, tecnologia, humor e curiosidade sem inventar biografia, e a gravura de um pequeno observatório impossível sobre um livro concentra a expressão surreal.
 
-Não aplicar textura aos campos, textos ou botões. Não numerar conteúdos sem sequência real. Não fabricar categorias, números, credenciais ou links sociais. Na gravura vetorial implementada no site, o dourado está restrito à órbita. Essa descrição da peça existente não limita todas as ilustrações à mesma aplicação: o token continua sendo um detalhe de apoio, como nos pães de queijo da referência da Dama, respeitando a orientação azul monocromática do Droppy e as decisões ainda pendentes na seção de referência-mestra. O rosa no CTA e no pequeno corpo celeste tem função pontual. Sem animação automática.
+Não aplicar textura aos campos, textos ou botões. Não numerar conteúdos sem sequência real. Não fabricar categorias, números, credenciais ou links sociais. Na gravura vetorial implementada no site, o dourado está restrito à órbita. Essa descrição da peça existente não limita todas as ilustrações à mesma aplicação: o token continua sendo um detalhe de apoio, como nos pães de queijo da referência da Dama, respeitando a orientação azul monocromática do Droppy e as decisões ainda pendentes na seção de referência-mestra. O rosa no CTA e no pequeno corpo celeste tem função pontual. A regra original "sem animação automática" foi substituída, a pedido do usuário em 11 de novembro de 2026, pelas regras de movimento descritas em [Movimento e interação](#movimento-e-interação).
 
 ## Segunda passagem: implementação
 
@@ -59,6 +59,18 @@ A comparação tipográfica fica em `type-comparison.html`, fora das rotas do pr
 - Feed, canonical, robots, sitemap, Markdown e publicação estática no Pages permanecem funcionais.
 - Fotografias editoriais futuras podem ser usadas nos artigos; a imagem promocional do starter não deve voltar como fallback.
 - O texto inicial é uma publicação de exemplo, explicitamente sinalizada; a página Sobre descreve o espaço, não a vida do autor.
+
+## Movimento e interação
+
+Revisão de 11 de novembro de 2026, a pedido do usuário, com inspiração declarada em cinco repositórios: Icônes (busca instantânea local), ui-prompts (disciplina de pesos, bordas e raio; nada de gradiente, brilho ou vidro), Prestige UI (cabeçalho que condensa, revelação de texto com desfoque, rodapé com marca em corpo grande, botão de copiar com confirmação), BoardUI (traço que se desenha, respeito a `prefers-reduced-motion`) e Watermelon (movimento como parte do componente). Nenhum código, componente ou asset desses projetos foi copiado; o site continua sem React, sem biblioteca de animação e sem dependências novas.
+
+- **Entrada, uma vez por carga:** título da capa e do Sobre revelado palavra a palavra; órbita da gravura desenhada e pequeno corpo celeste surgindo em seguida.
+- **Ambiente:** somente dentro da prancha, com flutuação lenta do globo (±4px em 9s) e cintilação de cinco estrelas. Texto e interface não têm movimento contínuo.
+- **Rolagem:** cabeçalho fixo que condensa de 80px para 60px e barra rosa de progresso de leitura no artigo, ambos com animação CSS atrelada à rolagem. Onde o navegador não oferece o recurso, o cabeçalho permanece em 80px e a barra não aparece.
+- **Navegação:** transição entre páginas via `@view-transition`; o traço rosa do item ativo desliza entre os links. Navegadores sem suporte fazem a troca comum.
+- **JavaScript no cliente:** apenas dois scripts pequenos — busca do arquivo (filtro local sem requisições, insensível a acentos, atalho `/`, `Esc` limpa, contagem anunciada a leitores de tela) e botão "Copiar link" do artigo. Capa e Sobre seguem sem script.
+- **Movimento reduzido:** `prefers-reduced-motion: reduce` desativa todas as animações e transições; o conteúdo aparece em seu estado final.
+- **Não adotados:** modo escuro (o tema claro é regra do sistema), botões magnéticos ou com brilho, marquees, texto embaralhado e gradientes, por conflitarem com a interface limpa.
 
 ## Vocabulário de textura e aplicação ao Droppy
 

@@ -6,7 +6,7 @@ const { posts, headingLevel = 3 } = Astro.props;
 const Heading = `h${headingLevel}` as 'h2' | 'h3';
 ---
 {posts.length ? <ul class="post-list">
-  {posts.map(post => <li class="rail-grid">
+  {posts.map(post => <li class="rail-grid" data-post data-search={`${post.data.title} ${post.data.description}`}>
     <div class="post-meta"><FormattedDate date={post.data.pubDate} />{post.data.example && <span>Publicação de exemplo</span>}</div>
     <article><Heading class="post-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></Heading><p>{post.data.description}</p></article>
   </li>)}

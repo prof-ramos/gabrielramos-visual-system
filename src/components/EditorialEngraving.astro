@@ -170,8 +170,9 @@ const sparks = [[92, 96, 7], [452, 258, 5.5], [344, 44, 4.5], [118, 306, 4], [47
       {sky.map((p) => <circle cx={p.x} cy={p.y} r={p.r} opacity={p.r > 1 ? 0.9 : 0.55} />)}
       {dust.map((p) => <circle cx={p.x} cy={p.y} r={p.r} opacity=".6" />)}
     </g>
-    <path d={sparks.map(([x, y, s]) => `M${x - s} ${y}h${s * 2}M${x} ${y - s}v${s * 2}`).join('')} stroke="var(--ivory)" stroke-width="1.1" />
-    <path d={orbitBack} stroke="var(--gold)" stroke-width="1.2" />
+    {sparks.map(([x, y, s], i) => <path class="spark" style={`--i:${i}`} d={`M${x - s} ${y}h${s * 2}M${x} ${y - s}v${s * 2}`} stroke="var(--ivory)" stroke-width="1.1" />)}
+    <g class="float">
+    <path class="draw" pathLength="1" d={orbitBack} stroke="var(--gold)" stroke-width="1.2" />
 
     <circle cx={cx} cy={cy} r={R + 6} stroke="var(--ivory)" stroke-width=".7" stroke-opacity=".55" />
     <circle cx={cx} cy={cy} r={R} fill="var(--ivory)" />
@@ -181,14 +182,17 @@ const sparks = [[92, 96, 7], [452, 258, 5.5], [344, 44, 4.5], [118, 306, 4], [47
       <path d={shade} stroke-width=".75" />
       <path d={crossShade} stroke-width=".75" />
       <g fill="var(--navy)" stroke="none">{stipple.map((p) => <circle cx={p.x} cy={p.y} r={p.r} />)}</g>
-      <path d={orbitFront} stroke="var(--ivory)" stroke-width="7" />
+      <path class="draw" pathLength="1" d={orbitFront} stroke="var(--ivory)" stroke-width="7" />
     </g>
-    <path d={orbitFront} stroke="var(--gold)" stroke-width="1.9" />
-    <path d={orbitFrontOuter} stroke="var(--gold)" stroke-width=".8" />
+    <path class="draw" pathLength="1" d={orbitFront} stroke="var(--gold)" stroke-width="1.9" />
+    <path class="draw" pathLength="1" d={orbitFrontOuter} stroke="var(--gold)" stroke-width=".8" />
 
+    <g class="moon">
     <circle cx={f(moon.x)} cy={f(moon.y)} r={moonR + 4} fill="var(--navy)" />
     <circle cx={f(moon.x)} cy={f(moon.y)} r={moonR} fill="var(--pink)" />
     <path d={moonShade} stroke="var(--navy)" stroke-width=".8" clip-path="url(#eng-moon)" />
+    </g>
+    </g>
 
     <path d="M270 340v9M280 336v15M290 340v9" stroke="var(--ivory)" stroke-width=".9" stroke-opacity=".6" />
 
@@ -205,4 +209,13 @@ const sparks = [[92, 96, 7], [452, 258, 5.5], [344, 44, 4.5], [118, 306, 4], [47
 </svg>
 <style>
   .engraving { width: 100%; height: auto; }
+  /* Movimento contido: a órbita se desenha uma vez; depois, só uma flutuação lenta. */
+  .draw { stroke-dasharray: 1; animation: draw 1.8s cubic-bezier(.5, 0, .2, 1) .25s both; }
+  @keyframes draw { from { stroke-dashoffset: 1; } }
+  .moon { transform-box: fill-box; transform-origin: center; animation: pop .6s cubic-bezier(.3, 1.4, .5, 1) 1.5s both; }
+  @keyframes pop { from { scale: 0; } }
+  .float { animation: float 9s ease-in-out infinite alternate; }
+  @keyframes float { from { translate: 0 -4px; } to { translate: 0 4px; } }
+  .spark { animation: twinkle 4.5s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -1.3s); }
+  @keyframes twinkle { to { opacity: .3; } }
 </style>

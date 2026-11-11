@@ -12,7 +12,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
     <Header />
     <main tabindex="-1" id="conteudo" class="container about">
       <div class="about-copy">
-        <h1>Uma boa pergunta<br />abre caminhos.</h1>
+        <h1 class="reveal">{['Uma', 'boa', 'pergunta', 'abre', 'caminhos.'].map((word, i) => <Fragment><span class="w" style={`--i:${i}`}>{word}</span>{i === 2 ? <br /> : ' '}</Fragment>)}</h1>
         <p class="lede">Este é o SherlockRamos: um espaço para Direito, tecnologia, humor e curiosidade dividirem a mesma página.</p>
         <p>Por aqui, uma ideia pode começar séria e terminar com uma sobrancelha levantada. O convite é olhar de novo.</p>
         <div class="actions"><a class="button" href="/blog/">Ler as publicações</a><a class="text-link" href="/rss.xml">Acompanhar por RSS</a></div>
