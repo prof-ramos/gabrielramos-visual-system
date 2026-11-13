@@ -1,17 +1,14 @@
 # Verificação da identidade visual
 
-## Revisão de UI/UX — 11 de novembro de 2026
+## Ajuste estrutural — 13 de novembro de 2026
 
-Verificação em Chromium headless (Playwright) sobre o preview de produção. As seções seguintes descrevem a passagem de 6 de novembro e permanecem como registro histórico; contagens de arquivos e bytes daquela passagem não foram refeitas.
+Duas revisões feitas em 11 de novembro (gravura em prancha marinho; movimento, busca e rodapé com marca grande) foram desfeitas a pedido de Gabriel Ramos por descaracterizarem a identidade. Gravura, cabeçalho, rodapé, lista, capa, Sobre, 404, hover e a regra "sem animação automática" voltaram ao estado da passagem de 6 de novembro. Permanecem apenas três correções:
 
-- `npm run build`: `astro check` com zero erros, avisos e hints; cinco páginas geradas.
-- Sem overflow horizontal em início, arquivo, artigo e Sobre nas larguras 320, 360, 390, 768, 1024 e 1440px; 404 conferido em 390 e 1440px.
-- Fraunces e Source Sans 3 carregadas (`document.fonts.check`); nenhuma fonte ou script remoto acrescentado.
-- Capturas inspecionadas: todas as páginas em 1440 e 390px, início em 320px, hover de link de texto e foco por teclado na capa.
-- Contrastes novos pela fórmula WCAG: texto marfim/marinho no hover do CTA 13,10:1; marinho sobre marca-texto rosa 7,38:1. Áreas de toque da navegação com 48px de altura.
-- Movimento e interação (mesma data): cabeçalho medido em 60px após rolagem; busca testada com termos acentuados e em maiúsculas, estado vazio, botão de limpar, atalho `/` e `Esc`; "Copiar link" conferido pela leitura da área de transferência; com `prefers-reduced-motion: reduce` emulado, zero animações em execução e título visível; nenhum erro de console.
-- Defeito encontrado e corrigido nesta passagem: o minificador fundia `animation-timeline` no atalho `animation`, que o Chromium rejeita; as regras usam propriedades longas.
-- Não executados: auditoria automatizada de acessibilidade, leitor de tela, outros navegadores (o comportamento de fallback em Firefox e Safari não foi testado) e deploy. A transição entre páginas não foi capturada em imagem.
+- Artigo: retorno e data em trilho à esquerda; título, texto e rodapé numa só margem (antes eram três margens diferentes).
+- Hierarquia: `h2` e `h3` reduzidos para não competir com o título da página.
+- Capa: título em duas linhas a 320px.
+
+Verificado em Chromium headless (Playwright) sobre o preview de produção: `astro check` sem erros, avisos ou hints; cinco páginas; sem overflow horizontal em início, arquivo, artigo e Sobre a 320, 360, 390, 768, 1024 e 1440px; capturas de capa e artigo inspecionadas em 1440 e 390px. As seções abaixo são o registro de 6 de novembro, não refeito.
 
 Executada em 6 de novembro de 2026. QA real em Chromium via ego-browser, num Agent Space exclusivo, encerrado ao terminar. O navegador integrado não estava disponível nesta sessão (host de browser indisponível). Nenhuma aba pessoal foi usada.
 

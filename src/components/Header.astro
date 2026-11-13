@@ -14,22 +14,12 @@ import HeaderLink from './HeaderLink.astro';
   </nav>
 </header>
 <style>
-  header { position: sticky; top: 0; z-index: 5; background: var(--navy); color: var(--ivory); }
-  /* Condensa de 80px para 60px nos primeiros 160px de rolagem, sem JavaScript.
-     Propriedades longas de propósito: o Chromium rejeita a linha do tempo dentro do atalho `animation`. */
-  @supports (animation-timeline: scroll()) {
-    @media (min-width: 481px) {
-      nav { animation-name: condense; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: scroll(root); animation-range: 0 160px; }
-      .brand { animation-name: brand-condense; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: scroll(root); animation-range: 0 160px; }
-    }
-  }
-  @keyframes condense { to { min-height: 60px; } }
-  @keyframes brand-condense { to { font-size: 1.4375rem; } }
-  nav { min-height: 80px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0 1.5rem; }
-  .brand { display: inline-flex; align-items: center; min-height: 48px; font: 600 clamp(1.5rem, 2.2vw, 1.875rem)/1 var(--display); letter-spacing: -.05em; text-decoration: none; white-space: nowrap; }
+  header { background: var(--navy); color: var(--ivory); }
+  nav { min-height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .brand { font: 600 clamp(1.5rem, 2.4vw, 2rem)/1 var(--display); letter-spacing: -.05em; text-decoration: none; white-space: nowrap; }
   .brand span { color: var(--pink); }
-  .nav-links { display: flex; align-items: center; gap: .25rem; margin-inline: -.9rem; }
-  .skip-link { position: fixed; top: -100px; left: 1.5rem; z-index: 10; padding: .8rem 1.2rem; border-radius: 4px; background: var(--pink); color: var(--navy); font-weight: 600; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .skip-link { position: absolute; top: -100px; left: 1.5rem; z-index: 10; padding: .8rem 1.2rem; background: var(--pink); color: var(--navy); }
   .skip-link:focus { top: 1rem; }
-  @media (max-width: 480px) { nav { padding-block: .35rem; gap: 0 .75rem; } .brand { font-size: 1.375rem; } .nav-links { margin-inline: -.55rem; gap: 0; } .nav-links :global(a) { padding-inline: .55rem; font-size: 1rem; } }
+  @media (max-width: 680px) { nav { min-height: 110px; padding-block: 1.1rem; align-items: flex-start; justify-content: center; flex-direction: column; gap: .75rem; } .nav-links { gap: 1.75rem; } }
 </style>

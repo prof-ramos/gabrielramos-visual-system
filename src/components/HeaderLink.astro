@@ -7,13 +7,9 @@ const normalizedHref = String(href).replace(/\/$/, '') || '/';
 const exact = normalizedHref === '/' ? pathname === '/' : pathname === `${normalizedHref}/`;
 const isActive = exact || (normalizedHref !== '/' && pathname.startsWith(`${normalizedHref}/`));
 ---
-<a href={href} class:list={[className, { active: isActive }]} aria-current={exact ? 'page' : undefined} {...props}><span><slot /></span></a>
+<a href={href} class:list={[className, { active: isActive }]} aria-current={exact ? 'page' : undefined} {...props}><slot /></a>
 <style>
-  /* Área de toque de 48px; o traço fica no texto, não na caixa. */
-  a { display: inline-flex; align-items: center; min-height: 48px; padding-inline: .9rem; text-decoration: none; font-size: 1.0625rem; color: #dfe5e4; transition: color .15s ease; }
-  span { padding-block: .3rem; border-bottom: 2px solid transparent; transition: border-color .15s ease; }
-  a:hover { color: var(--ivory); }
-  a:hover span { border-bottom-color: rgb(244 245 241 / .55); }
-  a.active { color: var(--ivory); font-weight: 600; }
-  a.active span { border-bottom-color: var(--pink); view-transition-name: nav-indicator; }
+  a { display: inline-block; padding-block: .6rem; text-decoration: none; font-size: 1rem; border-bottom: 2px solid transparent; }
+  a.active { border-bottom-color: var(--pink); font-weight: 600; }
+  a:hover { border-bottom-color: var(--ivory); }
 </style>

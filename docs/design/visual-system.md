@@ -17,16 +17,16 @@ Fraunces 600 na marca, 500/600 nos títulos. Source Sans 3 em 400 no corpo e 400
 
 ### Duas estruturas consideradas
 
-**Hero bipartido, escolhido:** pergunta editorial à esquerda, prancha de gravura à direita. Publicações em lista ampla e silenciosa, mantendo a arte como único gesto expressivo.
+**Hero bipartido, escolhido:** pergunta editorial à esquerda, estudo de gravura à direita. Publicações em lista ampla e silenciosa, mantendo a arte como único gesto expressivo.
 
 ```text
 ┌───────────────────────────────────────────────────┐
 │ SherlockRamos                  Início Blog Sobre  │ marinho
 ├───────────────────────────────────────────────────┤
-│ E se a pergunta         [prancha marinho: globo    │
-│ for outra?               gravado sobre um livro]  │ marfim
+│ E se a pergunta         [esfera gravada suspensa   │
+│ for outra?               sobre páginas de livro]  │ marfim
 │ Direito, tecnologia...                            │
-│ [Ler as publicações]  Sobre este espaço           │
+│ [Ler as publicações]                              │
 ├───────────────────────────────────────────────────┤
 │ Publicações recentes                   Ver todas  │
 │ data             título + descrição               │
@@ -41,11 +41,11 @@ Fraunces 600 na marca, 500/600 nos títulos. Source Sans 3 em 400 no corpo e 400
 
 O starter usava eyebrow em caixa alta, azul padrão, imagem promocional do Astro e setas acrescentadas a links. Essa combinação serviria para qualquer blog. A revisão remove esses recursos: o contraste marfim/marinho define a estrutura, a pergunta editorial admite Direito, tecnologia, humor e curiosidade sem inventar biografia, e a gravura de um pequeno observatório impossível sobre um livro concentra a expressão surreal.
 
-Não aplicar textura aos campos, textos ou botões. Não numerar conteúdos sem sequência real. Não fabricar categorias, números, credenciais ou links sociais. Na gravura vetorial implementada no site, o dourado está restrito à órbita. Essa descrição da peça existente não limita todas as ilustrações à mesma aplicação: o token continua sendo um detalhe de apoio, como nos pães de queijo da referência da Dama, respeitando a orientação azul monocromática do Droppy e as decisões ainda pendentes na seção de referência-mestra. O rosa no CTA e no pequeno corpo celeste tem função pontual. A regra original "sem animação automática" foi substituída, a pedido do usuário em 11 de novembro de 2026, pelas regras de movimento descritas em [Movimento e interação](#movimento-e-interação).
+Não aplicar textura aos campos, textos ou botões. Não numerar conteúdos sem sequência real. Não fabricar categorias, números, credenciais ou links sociais. Na gravura vetorial implementada no site, o dourado está restrito à órbita. Essa descrição da peça existente não limita todas as ilustrações à mesma aplicação: o token continua sendo um detalhe de apoio, como nos pães de queijo da referência da Dama, respeitando a orientação azul monocromática do Droppy e as decisões ainda pendentes na seção de referência-mestra. O rosa no CTA e no pequeno corpo celeste tem função pontual. Sem animação automática.
 
 ## Segunda passagem: implementação
 
-A gravura vetorial é decoração original, não mascote nem símbolo definitivo da marca. Na revisão de 11 de novembro de 2026 ela passou a ser uma **prancha**: figura em marfim sobre campo marinho, a mesma relação da referência-mestra, contida na ilustração e sem alterar o tema claro do site. Paralelos e meridianos seguem uma projeção ortográfica; hachuras, hachuras cruzadas e pontilhado são calculados a partir de uma única fonte de luz, de modo que a textura descreve volume em vez de preencher. A órbita passa por trás e pela frente do globo; o dourado continua restrito a ela e o rosa ao pequeno corpo celeste. O desenho é determinístico (semente fixa), gerado no build, sem script no cliente. O asset promocional do Astro foi inspecionado e preservado intacto no disco, mas retirado das superfícies públicas por incompatibilidade com o sistema.
+A gravura vetorial é decoração original, não mascote nem símbolo definitivo da marca. Curvas de latitude, meridianos, pontilhado e folhas hachuradas evocam engraving/etching em uma composição de livro e esfera. O asset promocional do Astro foi inspecionado e preservado intacto no disco, mas retirado das superfícies públicas por incompatibilidade com o sistema.
 
 A comparação tipográfica fica em `type-comparison.html`, fora das rotas do produto: Fraunces/Source Sans 3 versus Geist. Geist não substitui a seleção do briefing. As decisões de contraste, respiração e hierarquia são verificadas em navegador; resultados estão em `qa.md`.
 
@@ -53,24 +53,11 @@ A comparação tipográfica fica em `type-comparison.html`, fora das rotas do pr
 
 - Tokens globais: `src/styles/global.css`; fontes: `src/styles/fonts.css`.
 - Componentes compartilhados: Header, Footer, PostList e EditorialEngraving.
-- Grade editorial única (`.rail-grid`): trilho de metadados de 190px + coluna de leitura. A lista de publicações e o artigo usam a mesma grade, de modo que título, texto e rodapé do artigo compartilham uma só margem esquerda; abaixo de 860px o trilho sobe para o topo.
-- Links de texto (`.text-link`, `.prose a`): sublinhado fino em repouso e marca-texto rosa com texto marinho no hover. Na lista, a linha inteira é o alvo do link e o título recebe um traço rosa. O CTA inverte para marinho com texto marfim. Transições só em resposta a interação e desativadas com `prefers-reduced-motion`.
+- Lista de publicações e artigo usam a mesma grade (trilho de 190px para data e retorno + coluna de leitura), de modo que título, texto e rodapé do artigo compartilham uma única margem esquerda. Títulos de seção (`h2`) ficam abaixo do título da página e próximos dos títulos dos posts.
 - Páginas limpas de leitura em marfim; a gravura aparece na capa e no contexto Sobre.
 - Feed, canonical, robots, sitemap, Markdown e publicação estática no Pages permanecem funcionais.
 - Fotografias editoriais futuras podem ser usadas nos artigos; a imagem promocional do starter não deve voltar como fallback.
 - O texto inicial é uma publicação de exemplo, explicitamente sinalizada; a página Sobre descreve o espaço, não a vida do autor.
-
-## Movimento e interação
-
-Revisão de 11 de novembro de 2026, a pedido do usuário, com inspiração declarada em cinco repositórios: Icônes (busca instantânea local), ui-prompts (disciplina de pesos, bordas e raio; nada de gradiente, brilho ou vidro), Prestige UI (cabeçalho que condensa, revelação de texto com desfoque, rodapé com marca em corpo grande, botão de copiar com confirmação), BoardUI (traço que se desenha, respeito a `prefers-reduced-motion`) e Watermelon (movimento como parte do componente). Nenhum código, componente ou asset desses projetos foi copiado; o site continua sem React, sem biblioteca de animação e sem dependências novas.
-
-- **Entrada, uma vez por carga:** título da capa e do Sobre revelado palavra a palavra; órbita da gravura desenhada e pequeno corpo celeste surgindo em seguida.
-- **Ambiente:** somente dentro da prancha, com flutuação lenta do globo (±4px em 9s) e cintilação de cinco estrelas. Texto e interface não têm movimento contínuo.
-- **Rolagem:** cabeçalho fixo que condensa de 80px para 60px e barra rosa de progresso de leitura no artigo, ambos com animação CSS atrelada à rolagem. Onde o navegador não oferece o recurso, o cabeçalho permanece em 80px e a barra não aparece.
-- **Navegação:** transição entre páginas via `@view-transition`; o traço rosa do item ativo desliza entre os links. Navegadores sem suporte fazem a troca comum.
-- **JavaScript no cliente:** apenas dois scripts pequenos — busca do arquivo (filtro local sem requisições, insensível a acentos, atalho `/`, `Esc` limpa, contagem anunciada a leitores de tela) e botão "Copiar link" do artigo. Capa e Sobre seguem sem script.
-- **Movimento reduzido:** `prefers-reduced-motion: reduce` desativa todas as animações e transições; o conteúdo aparece em seu estado final.
-- **Não adotados:** modo escuro (o tema claro é regra do sistema), botões magnéticos ou com brilho, marquees, texto embaralhado e gradientes, por conflitarem com a interface limpa.
 
 ## Vocabulário de textura e aplicação ao Droppy
 
