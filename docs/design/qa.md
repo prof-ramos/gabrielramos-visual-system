@@ -1,5 +1,15 @@
 # Verificação da identidade visual
 
+## Ajuste estrutural — 13 de novembro de 2026
+
+Duas revisões feitas em 11 de novembro (gravura em prancha marinho; movimento, busca e rodapé com marca grande) foram desfeitas a pedido de Gabriel Ramos por descaracterizarem a identidade. Gravura, cabeçalho, rodapé, lista, capa, Sobre, 404, hover e a regra "sem animação automática" voltaram ao estado da passagem de 6 de novembro. Permanecem apenas três correções:
+
+- Artigo: retorno e data em trilho à esquerda; título, texto e rodapé numa só margem (antes eram três margens diferentes).
+- Hierarquia: `h2` e `h3` reduzidos para não competir com o título da página.
+- Capa: título em duas linhas a 320px.
+
+Verificado em Chromium headless (Playwright) sobre o preview de produção: `astro check` sem erros, avisos ou hints; cinco páginas; sem overflow horizontal em início, arquivo, artigo e Sobre a 320, 360, 390, 768, 1024 e 1440px; capturas de capa e artigo inspecionadas em 1440 e 390px. As seções abaixo são o registro de 6 de novembro, não refeito.
+
 Executada em 6 de novembro de 2026. QA real em Chromium via ego-browser, num Agent Space exclusivo, encerrado ao terminar. O navegador integrado não estava disponível nesta sessão (host de browser indisponível). Nenhuma aba pessoal foi usada.
 
 ## Evidências

@@ -53,6 +53,7 @@ A comparação tipográfica fica em `type-comparison.html`, fora das rotas do pr
 
 - Tokens globais: `src/styles/global.css`; fontes: `src/styles/fonts.css`.
 - Componentes compartilhados: Header, Footer, PostList e EditorialEngraving.
+- Lista de publicações e artigo usam a mesma grade (trilho de 190px para data e retorno + coluna de leitura), de modo que título, texto e rodapé do artigo compartilham uma única margem esquerda. Títulos de seção (`h2`) ficam abaixo do título da página e próximos dos títulos dos posts.
 - Páginas limpas de leitura em marfim; a gravura aparece na capa e no contexto Sobre.
 - Feed, canonical, robots, sitemap, Markdown e publicação estática no Pages permanecem funcionais.
 - Fotografias editoriais futuras podem ser usadas nos artigos; a imagem promocional do starter não deve voltar como fallback.
