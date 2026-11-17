@@ -1,7 +1,11 @@
+---
+import { SITE_TITLE } from '../consts';
+import { ROUTES } from '../lib/routes';
+---
 <footer class="on-navy">
   <div class="container footer-inner">
     <div><p class="signature">GabrielRamos<span aria-hidden="true">.</span></p><p class="footer-note">A curiosidade continua.</p></div>
-    <div class="footer-links"><a href="/rss.xml">Acompanhar por RSS</a><p>&copy; {new Date().getFullYear()} SherlockRamos</p></div>
+    <div class="footer-links"><a href={ROUTES.rss}>Acompanhar por RSS</a><p>&copy; {new Date().getFullYear()} {SITE_TITLE}</p></div>
   </div>
 </footer>
 <style>

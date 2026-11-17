@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { postPath, ROUTES } from '../lib/routes';
 import FormattedDate from './FormattedDate.astro';
 interface Props { posts: CollectionEntry<'blog'>[]; headingLevel?: 2 | 3; }
 const { posts, headingLevel = 3 } = Astro.props;
@@ -8,9 +9,9 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 {posts.length ? <ul class="post-list">
   {posts.map(post => <li>
     <div class="post-meta"><FormattedDate date={post.data.pubDate} />{post.data.example && <span>Publicação de exemplo</span>}</div>
-    <article><Heading class="post-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></Heading><p>{post.data.description}</p></article>
+    <article><Heading class="post-title"><a href={postPath(post.id)}>{post.data.title}</a></Heading><p>{post.data.description}</p></article>
   </li>)}
-</ul> : <p>As primeiras publicações estarão aqui em breve. <a href="/rss.xml">Acompanhe o feed RSS</a>.</p>}
+</ul> : <p>As primeiras publicações estarão aqui em breve. <a href={ROUTES.rss}>Acompanhe o feed RSS</a>.</p>}
 <style>
   .post-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
   li { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 3rem; padding-block: 2.5rem; border-bottom: 1px solid var(--border); }

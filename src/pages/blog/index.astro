@@ -1,13 +1,13 @@
 ---
 import PostList from '../../components/PostList.astro';
-import { SITE_TITLE } from '../../consts';
+import { pageTitle } from '../../consts';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPublishedPosts } from '../../lib/posts';
 
 const posts = await getPublishedPosts();
 ---
 
-<BaseLayout title={`Blog | ${SITE_TITLE}`}>
+<BaseLayout title={pageTitle('Blog')}>
 	<div class="container">
 		<div class="page-intro">
 			<h1>Publicações</h1>

@@ -4,6 +4,7 @@ import PostList from '../components/PostList.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getPublishedPosts } from '../lib/posts';
+import { ROUTES } from '../lib/routes';
 
 const posts = (await getPublishedPosts()).slice(0, 3);
 ---
@@ -13,14 +14,14 @@ const posts = (await getPublishedPosts()).slice(0, 3);
 		<div class="hero-copy">
 			<h1 id="intro">E se a pergunta<br />for outra?</h1>
 			<p>{SITE_DESCRIPTION}</p>
-			<a class="button" href="/blog/">Ler as publicações</a>
+			<a class="button" href={ROUTES.blog}>Ler as publicações</a>
 		</div>
 		<div class="hero-art"><EditorialEngraving /></div>
 	</section>
 	<section class="container latest" aria-labelledby="recentes">
 		<div class="section-heading">
 			<h2 id="recentes">Publicações recentes</h2>
-			<a href="/blog/">Ver todas</a>
+			<a href={ROUTES.blog}>Ver todas</a>
 		</div>
 		<PostList posts={posts} />
 	</section>

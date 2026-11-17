@@ -1,17 +1,18 @@
 ---
 import EditorialEngraving from '../components/EditorialEngraving.astro';
-import { SITE_TITLE } from '../consts';
+import { pageTitle, SITE_TITLE } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { ROUTES } from '../lib/routes';
 ---
 
-<BaseLayout title={`Sobre | ${SITE_TITLE}`}>
+<BaseLayout title={pageTitle('Sobre')}>
 	<div class="container about">
 		<div class="page-intro">
 			<h1>Uma boa pergunta<br />abre caminhos.</h1>
 			<div class="prose">
-				<p>Este é o SherlockRamos: um espaço para Direito, tecnologia, humor e curiosidade dividirem a mesma página.</p>
+				<p>Este é o {SITE_TITLE}: um espaço para Direito, tecnologia, humor e curiosidade dividirem a mesma página.</p>
 				<p>Por aqui, uma ideia pode começar séria e terminar com uma sobrancelha levantada. O convite é olhar de novo.</p>
-				<p><a href="/blog/">Leia as publicações</a> ou <a href="/rss.xml">acompanhe por RSS</a>.</p>
+				<p><a href={ROUTES.blog}>Leia as publicações</a> ou <a href={ROUTES.rss}>acompanhe por RSS</a>.</p>
 			</div>
 		</div>
 		<div class="about-art"><EditorialEngraving /></div>

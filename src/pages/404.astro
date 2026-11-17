@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { ROUTES } from '../lib/routes';
 ---
 
 <BaseLayout title="Página não encontrada" description="Esta página não foi encontrada." noindex>
@@ -7,6 +8,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<p class="meta">Erro 404</p>
 		<h1>Essa página<br />ficou no mistério.</h1>
 		<p>O endereço pode ter mudado. Encontre uma nova leitura no blog.</p>
-		<a class="button" href="/blog/">Ver publicações</a>
+		<a class="button" href={ROUTES.blog}>Ver publicações</a>
 	</div>
 </BaseLayout>

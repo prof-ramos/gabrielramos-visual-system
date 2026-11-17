@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
+import { ROUTES } from '../lib/routes';
 import BaseLayout from './BaseLayout.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -12,7 +13,7 @@ const { title, description, pubDate, updatedDate, heroImage, example } = Astro.p
 <BaseLayout title={title} description={description} image={heroImage}>
 	<article class="container article">
 		<header class="article-heading">
-			<a class="back-link" href="/blog/">Todas as publicações</a>
+			<a class="back-link" href={ROUTES.blog}>Todas as publicações</a>
 			<p class="meta">
 				<FormattedDate date={pubDate} />
 				{example && <span class="example">Publicação de exemplo</span>}
@@ -24,8 +25,8 @@ const { title, description, pubDate, updatedDate, heroImage, example } = Astro.p
 		{heroImage && <Image class="hero-image" width={1160} src={heroImage} alt="" />}
 		<div class="prose reading"><slot /></div>
 		<div class="article-end reading">
-			<a href="/blog/">Voltar às publicações</a>
-			<a href="/rss.xml">Acompanhar por RSS</a>
+			<a href={ROUTES.blog}>Voltar às publicações</a>
+			<a href={ROUTES.rss}>Acompanhar por RSS</a>
 		</div>
 	</article>
 </BaseLayout>
