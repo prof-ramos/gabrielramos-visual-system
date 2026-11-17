@@ -46,6 +46,20 @@ A Cloudflare recomenda Workers para novos projetos; este template usa **Pages po
 
 Edite `src/consts.ts` para título e descrição; a apresentação está em `src/pages/index.astro` e `src/pages/about.astro`.
 
+Organização do código:
+
+| Caminho | Responsabilidade |
+| --- | --- |
+| `src/consts.ts` | Título, descrição, locale e padrão de título de página |
+| `src/lib/routes.ts` | Caminhos internos, URL de post e itens da navegação |
+| `src/lib/posts.ts` | Consulta de posts publicados, tipo `Post` e rótulos |
+| `src/layouts/BaseLayout.astro` | Casca única (head, cabeçalho, `main`, rodapé); toda página a utiliza |
+| `src/layouts/BlogPost.astro` | Página de artigo, composta sobre o `BaseLayout` |
+| `src/components/` | Peças de interface sem consulta de dados |
+| `src/styles/global.css` | Tokens e estilos globais (`fonts.css` declara as fontes locais) |
+
+Links internos devem usar `ROUTES`/`postPath` em vez de caminhos literais.
+
 Crie `src/content/blog/meu-artigo.md`:
 
 ```md
