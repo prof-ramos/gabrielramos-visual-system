@@ -1,0 +1,32 @@
+---
+import type { ImageMetadata } from 'astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_LOCALE } from '../consts';
+
+// Casca única do site. As páginas definem a própria largura (`.container`);
+// o alvo do skip-link (`#conteudo`) fica aqui.
+interface Props {
+	title: string;
+	description?: string;
+	image?: ImageMetadata;
+	noindex?: boolean;
+}
+
+const { title, description = SITE_DESCRIPTION, image, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE_LOCALE}>
+	<head>
+		<BaseHead title={title} description={description} image={image} noindex={noindex} />
+	</head>
+	<body>
+		<Header />
+		<main tabindex="-1" id="conteudo">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

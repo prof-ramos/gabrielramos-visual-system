@@ -1,15 +1,14 @@
 ---
 import { SITE_TITLE } from '../consts';
+import { NAV_LINKS, ROUTES } from '../lib/routes';
 import HeaderLink from './HeaderLink.astro';
 ---
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <header class="on-navy">
   <nav class="container" aria-label="Navegação principal">
-    <a class="brand" href="/" aria-label={`${SITE_TITLE}, início`}>{SITE_TITLE}<span aria-hidden="true">.</span></a>
+    <a class="brand" href={ROUTES.home} aria-label={`${SITE_TITLE}, início`}>{SITE_TITLE}<span aria-hidden="true">.</span></a>
     <div class="nav-links">
-      <HeaderLink href="/">Início</HeaderLink>
-      <HeaderLink href="/blog/">Blog</HeaderLink>
-      <HeaderLink href="/about/">Sobre</HeaderLink>
+      {NAV_LINKS.map(({ href, label }) => <HeaderLink href={href}>{label}</HeaderLink>)}
     </div>
   </nav>
 </header>
