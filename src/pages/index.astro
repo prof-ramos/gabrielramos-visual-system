@@ -6,7 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getPublishedPosts } from '../lib/posts';
 import { ROUTES } from '../lib/routes';
 
-const posts = (await getPublishedPosts()).slice(0, 3);
+const posts = await getPublishedPosts(3);
 ---
 
 <BaseLayout title={SITE_TITLE}>

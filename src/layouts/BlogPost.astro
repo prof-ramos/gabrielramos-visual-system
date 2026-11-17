@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
+import { EXAMPLE_POST_LABEL, type Post } from '../lib/posts';
 import { ROUTES } from '../lib/routes';
 import BaseLayout from './BaseLayout.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = Post['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, example } = Astro.props;
 ---
@@ -16,7 +16,7 @@ const { title, description, pubDate, updatedDate, heroImage, example } = Astro.p
 			<a class="back-link" href={ROUTES.blog}>Todas as publicações</a>
 			<p class="meta">
 				<FormattedDate date={pubDate} />
-				{example && <span class="example">Publicação de exemplo</span>}
+				{example && <span class="example">{EXAMPLE_POST_LABEL}</span>}
 			</p>
 			<h1>{title}</h1>
 			<p class="standfirst">{description}</p>
